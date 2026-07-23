@@ -2,53 +2,24 @@ import { useMemo, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { ResultShell } from "@/components/result/ResultShell";
+import { HomeCover } from "@/components/home/HomeCover";
 import { ProgressBar } from "@/components/test/ProgressBar";
 import { QuestionCard } from "@/components/test/QuestionCard";
 import type { Answer, Option, ScoreResult } from "@/engines/core/types";
-import type { ReflectionFocus } from "@/store/testStore";
 import { familyOriginTest } from "@/tests/family-origin/config";
 import { getQuestions } from "@/tests/family-origin/questions";
 
 type Screen = "home" | "test" | "result";
 
-const focusOptions: {
-  value: ReflectionFocus;
-  label: string;
-  description: string;
-}[] = [
-  {
-    value: "relationships",
-    label: "亲密关系",
-    description: "我为什么靠近、退后、讨好或防备",
-  },
-  {
-    value: "self_worth",
-    label: "自我价值",
-    description: "我如何把被爱和表现绑在一起",
-  },
-  {
-    value: "boundaries",
-    label: "边界控制",
-    description: "我在哪里过度负责，哪里难以拒绝",
-  },
-  {
-    value: "emotion",
-    label: "情绪表达",
-    description: "我如何处理脆弱、需要和求助",
-  },
-];
-
 export function SingleFileApp() {
   const questions = useMemo(() => getQuestions(), []);
   const [screen, setScreen] = useState<Screen>("home");
-  const [focus, setFocus] = useState<ReflectionFocus>();
   const [answers, setAnswers] = useState<Answer[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [result, setResult] = useState<ScoreResult>();
   const [resultError, setResultError] = useState<string>();
 
-  const startTest = (selectedFocus?: ReflectionFocus) => {
-    setFocus(selectedFocus);
+  const startTest = () => {
     setAnswers([]);
     setCurrentQuestionIndex(0);
     setResult(undefined);
@@ -107,61 +78,7 @@ export function SingleFileApp() {
   };
 
   if (screen === "home") {
-    return (
-      <main className="flex min-h-screen flex-col bg-white px-5 py-10 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-        <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col justify-center">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-medium text-zinc-500 dark:text-zinc-400">
-              家庭脚本 · 自我理解工具
-            </p>
-            <h1 className="mb-6 text-4xl font-bold leading-tight md:text-5xl">
-              看见你从家里带来的关系脚本
-            </h1>
-            <p className="mb-8 text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              通过 20 个身体感受与关系场景，理解你如何习得亲密、自主、价值感和边界。
-              这不是给家人或自己下诊断，而是画出一张可以继续修改的内在地图。
-            </p>
-            <button
-              onClick={() => startTest()}
-              className="inline-flex min-h-12 items-center gap-2 bg-zinc-950 px-7 py-3 font-medium text-white transition-opacity hover:opacity-85 dark:bg-zinc-100 dark:text-zinc-950"
-            >
-              直接开始
-              <ArrowRight size={18} aria-hidden="true" />
-            </button>
-          </div>
-
-          <section className="mt-12" aria-labelledby="focus-title">
-            <h2
-              id="focus-title"
-              className="mb-3 text-sm font-semibold text-zinc-500 dark:text-zinc-400"
-            >
-              也可以先选择这次最想理解的部分
-            </h2>
-            <div className="grid gap-3 md:grid-cols-4">
-              {focusOptions.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => startTest(option.value)}
-                  className="group min-h-28 border border-zinc-200 p-4 text-left transition-colors hover:border-zinc-950 dark:border-zinc-800 dark:hover:border-zinc-100"
-                >
-                  <span className="mb-2 flex items-center justify-between gap-2 font-medium">
-                    {option.label}
-                    <ArrowRight
-                      size={16}
-                      className="text-zinc-400 transition-transform group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </span>
-                  <span className="block text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-                    {option.description}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </section>
-        </div>
-      </main>
-    );
+    return <HomeCover onStart={startTest} />;
   }
 
   if (screen === "result") {
@@ -171,9 +88,8 @@ export function SingleFileApp() {
           result={result}
           testSlug={familyOriginTest.slug}
           testName={familyOriginTest.name}
-          focus={focus}
           shareUrl={null}
-          onRetake={() => startTest(focus)}
+          onRetake={startTest}
         />
       );
     }
@@ -230,7 +146,6 @@ export function SingleFileApp() {
               totalQuestions={questions.length}
               onAnswer={handleAnswer}
               selectedOption={currentAnswer?.selectedOption.value}
-              focus={focus}
             />
           )}
         </AnimatePresence>
