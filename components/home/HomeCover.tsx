@@ -48,11 +48,23 @@ export function HomeCover({ startHref, onStart }: HomeCoverProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <div className="mb-8 flex items-center gap-3">
+          <div className="mb-6 flex items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-[13px] font-medium text-zinc-500 ring-1 ring-zinc-200/80 backdrop-blur-sm dark:bg-zinc-900/80 dark:text-zinc-400 dark:ring-zinc-800">
-              <span aria-hidden="true">🪞</span>
+              <span aria-hidden="true">🏠</span>
               关系脚本
             </span>
+          </div>
+
+          <div className="mb-8">
+            <h1 className="text-[1.625rem] font-semibold leading-snug tracking-[-0.02em] text-zinc-900 dark:text-zinc-100 md:text-[1.875rem]">
+              <span className="text-zinc-950 dark:text-white">原生家庭</span>
+              的影响，
+              <br />
+              还在今天发生
+            </h1>
+            <p className="mt-3 text-[15px] leading-7 text-zinc-500 dark:text-zinc-400 md:text-base">
+              亲密、边界、价值感——许多反应模式，并非天生如此，而是早在那里悄悄学会。
+            </p>
           </div>
 
           <div className="mb-10 space-y-4">
@@ -82,7 +94,7 @@ export function HomeCover({ startHref, onStart }: HomeCoverProps) {
                   <p
                     className={`leading-[1.75] text-zinc-600 dark:text-zinc-300 ${
                       section.featured
-                        ? "pt-0.5 text-[1.125rem] font-medium tracking-[-0.01em] text-zinc-900 dark:text-zinc-100 md:text-[1.25rem]"
+                        ? "pt-0.5 text-[1.0625rem] font-medium tracking-[-0.01em] text-zinc-900 dark:text-zinc-100 md:text-[1.125rem]"
                         : "pt-1 text-[15px] md:text-base"
                     }`}
                   >

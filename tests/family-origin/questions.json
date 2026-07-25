@@ -1,893 +1,892 @@
 {
-    "meta": {
-      "title": "原生家庭意象投射测试",
-      "version": "1.0.0",
-      "total_questions": 20,
-      "dimensions": {
-        "emotional_warmth": {
-          "label": "情感温度",
-          "type": "positive",
-          "description": "童年时期是否被温暖回应、情感被接住"
-        },
-        "security_base": {
-          "label": "安全基地",
-          "type": "positive",
-          "description": "家庭环境是否稳定、可预期、能作为探索世界的后盾"
-        },
-        "control_intensity": {
-          "label": "控制强度",
-          "type": "negative",
-          "description": "父母是否过度干预、替代决策、要求服从"
-        },
-        "conditional_love": {
-          "label": "条件化程度",
-          "type": "negative",
-          "description": "爱是否建立在表现、成就、听话等条件之上"
-        },
-        "boundary_intrusion": {
-          "label": "边界侵入",
-          "type": "negative",
-          "description": "隐私、情绪、自我空间是否被尊重"
-        },
-        "emotional_neglect": {
-          "label": "情感忽视",
-          "type": "negative",
-          "description": "基本情感需求是否被长期忽略或无人回应"
-        }
+  "meta": {
+    "title": "原生家庭意象投射测试",
+    "version": "1.0.0",
+    "total_questions": 20,
+    "dimensions": {
+      "emotional_warmth": {
+        "label": "情感温度",
+        "type": "positive",
+        "description": "童年时期是否被温暖回应、情感被接住"
       },
-      "archetypes": {
+      "security_base": {
+        "label": "安全基地",
+        "type": "positive",
+        "description": "家庭环境是否稳定、可预期、能作为探索世界的后盾"
+      },
+      "control_intensity": {
+        "label": "控制强度",
+        "type": "negative",
+        "description": "父母是否过度干预、替代决策、要求服从"
+      },
+      "conditional_love": {
+        "label": "条件化程度",
+        "type": "negative",
+        "description": "爱是否建立在表现、成就、听话等条件之上"
+      },
+      "boundary_intrusion": {
+        "label": "边界侵入",
+        "type": "negative",
+        "description": "隐私、情绪、自我空间是否被尊重"
+      },
+      "emotional_neglect": {
+        "label": "情感忽视",
+        "type": "negative",
+        "description": "基本情感需求是否被长期忽略或无人回应"
+      }
+    },
+    "archetypes": {
+      "A": {
+        "label": "安全基地型",
+        "description": "温暖、稳定、允许独立，能作为人生探索的锚点"
+      },
+      "B": {
+        "label": "控制渗透型",
+        "description": "以爱为名的过度干预，自主空间被压缩，常伴随焦虑"
+      },
+      "C": {
+        "label": "条件交换型",
+        "description": "爱需要靠成绩、懂事、优秀来兑换，自我价值感外部绑定"
+      },
+      "D": {
+        "label": "情感荒漠型",
+        "description": "长期情感缺位，如同在关系沙漠中长大，学会自给自足或假性独立"
+      }
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "text": "认识新朋友时，你通常更容易被什么样的人吸引？",
+      "options": {
         "A": {
-          "label": "安全基地型",
-          "description": "温暖、稳定、允许独立，能作为人生探索的锚点"
+          "text": "温暖随和、让人放松的人，和他们在一起不用刻意找话题。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "security_base": 2,
+            "boundary_intrusion": 0
+          }
         },
         "B": {
-          "label": "控制渗透型",
-          "description": "以爱为名的过度干预，自主空间被压缩，常伴随焦虑"
+          "text": "靠谱稳重、有边界感的人，和他们相处我知道自己该怎么做。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "security_base": 1
+          }
         },
         "C": {
-          "label": "条件交换型",
-          "description": "爱需要靠成绩、懂事、优秀来兑换，自我价值感外部绑定"
+          "text": "优秀上进、有追求的人，和优秀的人在一起能激励我变得更好。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2
+          }
         },
         "D": {
-          "label": "情感荒漠型",
-          "description": "长期情感缺位，如同在关系沙漠中长大，学会自给自足或假性独立"
+          "text": "没什么特别偏好，随缘吧，反正大多数关系最后都会渐行渐远。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
         }
       }
     },
-    "questions": [
-      {
-        "id": 1,
-        "text": "想到「家」这个字，你身体最先浮现的意象更接近：",
-        "options": {
-          "A": {
-            "text": "一张被下午四点的阳光晒透的沙发，你可以瘫上去，什么都不解释。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "security_base": 2,
-              "boundary_intrusion": 0
-            }
-          },
-          "B": {
-            "text": "一扇密码锁，你知道数字，但开门前总要站在门口深吸一口气。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "security_base": 1
-            }
-          },
-          "C": {
-            "text": "一个舞台，灯亮着，你下意识检查自己的表情和台词是否到位。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2
-            }
-          },
-          "D": {
-            "text": "一张被涂改过很多次的旧地图，你不太确定上面的坐标还准不准。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
+    {
+      "id": 2,
+      "text": "你做了一件错事，第一反应通常是？",
+      "options": {
+        "A": {
+          "text": "承认错误，找人聊聊怎么弥补，不觉得犯错天会塌下来。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 2,
+            "security_base": 0,
+            "boundary_intrusion": 0,
+            "emotional_neglect": 0,
+            "control_intensity": 0,
+            "conditional_love": 0
           }
-        }
-      },
-      {
-        "id": 2,
-        "text": "小时候搞砸了一件事，那个场景留在你身体里的印记是：",
-        "options": {
-          "A": {
-            "text": "有人蹲下来，视线和你平齐，一起把碎片捡起来。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 2,
-              "security_base": 0,
-              "boundary_intrusion": 0,
-              "emotional_neglect": 0,
-              "control_intensity": 0,
-              "conditional_love": 0
-            }
-          },
-          "B": {
-            "text": "空气突然变薄，你学会了屏住呼吸，等待某种东西过去。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "emotional_neglect": 1
-            }
-          },
-          "C": {
-            "text": "你被要求写一份「说明书」，解释为什么会错，以及如何保证不再错。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "control_intensity": 1
-            }
-          },
-          "D": {
-            "text": "没有人提起，但你隐约知道，这件事会在未来的某次争吵中被当作证据。",
-            "archetype": "D",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "emotional_neglect": 1
-            }
+        },
+        "B": {
+          "text": "本能地紧张，先想怎么解释或掩饰，害怕被人知道后的后果。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "emotional_neglect": 1
           }
-        }
-      },
-      {
-        "id": 3,
-        "text": "和最亲近的人坐在一起不说话时，那种沉默更像：",
-        "options": {
-          "A": {
-            "text": "两棵各自生长的树，根系在地下轻轻相触，不需要说话。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 2,
-              "security_base": 2,
-              "boundary_intrusion": 0
-            }
-          },
-          "B": {
-            "text": "一场未完成的对话，你在心里不断预演下一句该说什么才安全。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 1,
-              "emotional_neglect": 1
-            }
-          },
-          "C": {
-            "text": "一间关掉的直播间，你担心如果不出声，关系就会掉线。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "emotional_warmth": 1
-            }
-          },
-          "D": {
-            "text": "暴风雨后的积水，表面平静，你不敢低头看水底有什么。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
+        },
+        "C": {
+          "text": "立刻开始复盘自己哪里做得不好，制定改进方案，绝不允许再犯。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "control_intensity": 1
           }
-        }
-      },
-      {
-        "id": 4,
-        "text": "当你要在两个喜欢的选项之间做决定时，内心响起的那个声音通常是：",
-        "options": {
-          "A": {
-            "text": "「选你喜欢的，我支持你。」",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 2,
-              "security_base": 1
-            }
-          },
-          "B": {
-            "text": "「选更安全的那个，别给自己找麻烦。」",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "security_base": 1
-            }
-          },
-          "C": {
-            "text": "「选那个看起来更让人羡慕、更拿得出手的。」",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "control_intensity": 1
-            }
-          },
-          "D": {
-            "text": "没有声音，只有一阵模糊的空白，你习惯等别人替你选。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "boundary_intrusion": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 5,
-        "text": "当你在人群中取得一点小成就，第一时间想分享时，你想象中的回应是：",
-        "options": {
-          "A": {
-            "text": "对方眼睛亮起来，比你还高兴，仿佛这是你们共同的事。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "conditional_love": 0
-            }
-          },
-          "B": {
-            "text": "对方冷静分析优点和不足，帮你规划下一步怎么更好。",
-            "archetype": "B",
-            "dimension_scores": {
-              "conditional_love": 1,
-              "control_intensity": 1
-            }
-          },
-          "C": {
-            "text": "对方淡淡点头，然后提起另一个更优秀的例子，作为补充。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 3,
-              "emotional_warmth": 1
-            }
-          },
-          "D": {
-            "text": "你犹豫了一下，最终决定不说，因为过去说了也像是打扰。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "emotional_warmth": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 6,
-        "text": "当别人无意识地靠近你、拍你肩膀或翻看你的物品时，你的身体反应是：",
-        "options": {
-          "A": {
-            "text": "放松，甚至感到被连接，像回到某个熟悉的温度里。",
-            "archetype": "A",
-            "dimension_scores": {
-              "boundary_intrusion": 0,
-              "emotional_warmth": 1
-            }
-          },
-          "B": {
-            "text": "瞬间僵硬，像被入侵领地的动物，汗毛竖起来。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 1,
-              "boundary_intrusion": 2
-            }
-          },
-          "C": {
-            "text": "笑着允许，同时在心里记下这是今天第几次。",
-            "archetype": "C",
-            "dimension_scores": {
-              "boundary_intrusion": 1,
-              "conditional_love": 1
-            }
-          },
-          "D": {
-            "text": "困惑，因为你不太确定自己的边界在哪里是合理的。",
-            "archetype": "D",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "emotional_neglect": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 7,
-        "text": "当你生病或特别累时，你更倾向于：",
-        "options": {
-          "A": {
-            "text": "直接告诉信任的人，允许自己被照顾，不担心显得麻烦。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "security_base": 1,
-              "emotional_neglect": 0
-            }
-          },
-          "B": {
-            "text": "独自硬撑，等过去了再轻描淡写地提起，仿佛那不算什么。",
-            "archetype": "B",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "control_intensity": 0
-            }
-          },
-          "C": {
-            "text": "只展示部分脆弱，精确计算自己看起来不会太麻烦的分寸。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "emotional_warmth": 1
-            }
-          },
-          "D": {
-            "text": "期待有人发现，如果对方没发现，就证明不被爱。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 8,
-        "text": "童年时目睹或经历冲突后，留在你心里的画面是：",
-        "options": {
-          "A": {
-            "text": "最后总有人先伸出手，和解比输赢重要，伤口可以被谈论。",
-            "archetype": "A",
-            "dimension_scores": {
-              "security_base": 1,
-              "emotional_warmth": 2,
-              "emotional_neglect": 0
-            }
-          },
-          "B": {
-            "text": "一扇摔上的门，和门后漫长的冷战，你学会了安静。",
-            "archetype": "B",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "control_intensity": 0
-            }
-          },
-          "C": {
-            "text": "你被拉出来做裁判，或被迫选边站，成为某个人的同盟。",
-            "archetype": "C",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "control_intensity": 1
-            }
-
-          },
-          "D": {
-            "text": "冲突像被按了静音键，从此那个话题成为房间里的大象。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 1,
-              "boundary_intrusion": 1,
-              "security_base": 0
-            }
-          }
-        }
-      },
-      {
-        "id": 9,
-        "text": "你收到一份并不喜欢的礼物时，第一反应是：",
-        "options": {
-          "A": {
-            "text": "感谢对方的心意，同时觉得可以坦诚沟通自己的真实喜好。",
-            "archetype": "A",
-            "dimension_scores": {
-              "boundary_intrusion": 0,
-              "emotional_warmth": 1,
-              "conditional_love": 0
-            }
-          },
-          "B": {
-            "text": "立刻表演喜欢，并责怪自己为什么不够感恩。",
-            "archetype": "B",
-            "dimension_scores": {
-              "conditional_love": 1,
-              "control_intensity": 1
-            }
-          },
-          "C": {
-            "text": "困惑：这份礼物是给我的，还是给「他们想象中那个我」的？",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "boundary_intrusion": 1
-            }
-          },
-          "D": {
-            "text": "几乎没有收到过礼物，或者收到时感到一种强烈的不配得感。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "conditional_love": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 10,
-        "text": "小时候你影响很深的一次哭泣，那个场景的记忆是：",
-        "options": {
-          "A": {
-            "text": "有人递来纸巾，允许你哭完，不问为什么，也不急着修好你。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "emotional_neglect": 0
-            }
-          },
-          "B": {
-            "text": "哭声被制止，或被要求给出「哭的理由」和「解决方案」。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "emotional_warmth": 1
-            }
-          },
-          "C": {
-            "text": "你躲起来哭，因为不想成为负担，哭完还要把脸洗得干净才出去。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_neglect": 1,
-              "security_base": 0
-            }
-          },
-          "D": {
-            "text": "哭了也没人发现，或者发现后被忽视、被嘲笑「这有什么好哭的」。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 3,
-              "emotional_warmth": 0
-            }
-          }
-        }
-      },
-      {
-        "id": 11,
-        "text": "接到家里电话时，你身体的第一反应是：",
-        "options": {
-          "A": {
-            "text": "放松，像打开一盏熟悉的灯，知道光会照向哪里。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "security_base": 1
-            }
-          },
-          "B": {
-            "text": "胃部轻微收缩，进入汇报模式，准备接受盘问或指令。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "boundary_intrusion": 1
-            }
-          },
-          "C": {
-            "text": "计算通话时长，确保达到「合格」的关心额度。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "emotional_warmth": 1
-            }
-          },
-          "D": {
-            "text": "犹豫接不接，接起来也不知道说什么，只剩礼貌的空白。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 12,
-        "text": "面对「不完美」的自己时，你内心的对话是：",
-        "options": {
-          "A": {
-            "text": "「没关系，我允许自己慢慢来。」",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 1,
-              "security_base": 0
-            }
-          },
-          "B": {
-            "text": "「你怎么又搞砸了，这次要付出什么代价？」",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "conditional_love": 1
-            }
-          },
-          "C": {
-            "text": "「只要别人没发现，这个不完美就不存在。」",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "boundary_intrusion": 1
-            }
-          },
-          "D": {
-            "text": "「完美或不完美，我好像都不太确定自己到底是谁。」",
-            "archetype": "D",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "emotional_neglect": 2,
-              "conditional_love": 2
-            }
-          }
-        }
-      },
-      {
-        "id": 13,
-        "text": "离家或结束一段亲密关系时，你的感受更像：",
-        "options": {
-          "A": {
-            "text": "带着一个看不见的拥抱上路，你知道那里永远有你的位置。",
-            "archetype": "A",
-            "dimension_scores": {
-              "security_base": 3,
-              "emotional_warmth": 1
-            }
-          },
-          "B": {
-            "text": "解开一根看不见的绳子，既轻松又有点失重，不确定自己是谁。",
-            "archetype": "B",
-            "dimension_scores": {
-              "security_base": 1,
-              "control_intensity": 1
-            }
-          },
-          "C": {
-            "text": "关掉一个后台程序，你习惯了不让自己太想念，太想念会失控。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
-          },
-          "D": {
-            "text": "反复确认门是否锁好，担心一转身世界就坍塌，或担心自己会坍塌。",
-            "archetype": "D",
-            "dimension_scores": {
-              "security_base": 2,
-              "emotional_neglect": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 14,
-        "text": "小时候你有了一个秘密时，你会：",
-        "options": {
-          "A": {
-            "text": "自然地选择是否分享，不觉得有压力，秘密是安全的。",
-            "archetype": "A",
-            "dimension_scores": {
-              "boundary_intrusion": 0,
-              "security_base": 1,
-              "emotional_warmth": 1
-            }
-          },
-          "B": {
-            "text": "立刻感到沉重的内疚，仿佛隐瞒就是背叛，秘密会伤害关系。",
-            "archetype": "B",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "control_intensity": 1
-            }
-          },
-          "C": {
-            "text": "把它藏得很深，因为过去分享后被当作把柄，在争吵中抛出来。",
-            "archetype": "C",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "emotional_warmth": 1
-            }
-          },
-          "D": {
-            "text": "不太确定什么是秘密，因为隐私从未被真正承认过，你习惯了透明。",
-            "archetype": "D",
-            "dimension_scores": {
-              "boundary_intrusion": 3,
-              "emotional_neglect": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 15,
-        "text": "当兄弟姐妹或同龄人比你更受关注时，你学会了：",
-        "options": {
-          "A": {
-            "text": "那不代表我不好，只是此刻的光在别处，我仍值得存在。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 1,
-              "security_base": 1
-            }
-          },
-          "B": {
-            "text": "加倍努力，让光移到自己身上，被看见才有价值。",
-            "archetype": "B",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "control_intensity": 1
-            }
-          },
-          "C": {
-            "text": "退到角落，告诉自己本来就不期待，期待会受伤。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_neglect": 1,
-              "conditional_love": 1
-            }
-          },
-          "D": {
-            "text": "感到一种奇怪的解脱，因为被看见意味着被审视，角落更安全。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 1,
-              "conditional_love": 1,
-              "boundary_intrusion": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 16,
-        "text": "你童年时面对家庭规则的感受更接近：",
-        "options": {
-          "A": {
-            "text": "规则是透明的玻璃墙，看得见，也知道自己为什么在里面。",
-            "archetype": "A",
-            "dimension_scores": {
-              "security_base": 2,
-              "control_intensity": 0
-            }
-          },
-          "B": {
-            "text": "规则是突然降临的，你学会的是察言观色，而非规则本身。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "security_base": 1
-            }
-          },
-          "C": {
-            "text": "规则很多，但制定规则的人自己并不遵守，你学会了双标。",
-            "archetype": "C",
-            "dimension_scores": {
-              "boundary_intrusion": 2,
-              "security_base": 1,
-              "control_intensity": 1
-            }
-          },
-          "D": {
-            "text": "没有明确规则，只有不断变化的「今天可以这样，明天不行」。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 2
-            }
-          }
-        }
-      },
-      {
-        "id": 17,
-        "text": "你第一次意识到「我长大了」那个瞬间，是因为：",
-        "options": {
-          "A": {
-            "text": "发现自己可以保护/照顾别人了，力量感从内部长出来。",
-            "archetype": "A",
-            "dimension_scores": {
-              "security_base": 1,
-              "emotional_warmth": 0
-            }
-          },
-          "B": {
-            "text": "发现自己终于可以做那些一直被禁止的事了，拥有带着腥味的自由。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 1,
-              "emotional_neglect": 1
-            }
-          },
-          "C": {
-            "text": "发现父母不再是你想象中的权威，他们也会脆弱、也会错。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_warmth": 1,
-              "security_base": 0
-            }
-          },
-          "D": {
-            "text": "发现自己早已习惯了不依靠任何人，独立是唯一的生存方式。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 18,
-        "text": "当别人真诚地夸奖你时，你内在的身体反应是：",
-        "options": {
-          "A": {
-            "text": "暖流，可以安心地收下，像收下一束不需要还的阳光。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 2,
-              "conditional_love": 0
-            }
-          },
-          "B": {
-            "text": "尴尬，想立刻找出自己没那么好的证据，夸奖让人坐立不安。",
-            "archetype": "B",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "conditional_love": 1
-            }
-          },
-          "C": {
-            "text": "警觉，猜测对方接下来可能要你做什么，夸奖是预付的筹码。",
-            "archetype": "C",
-            "dimension_scores": {
-              "conditional_love": 2,
-              "boundary_intrusion": 1
-            }
-          },
-          "D": {
-            "text": "恍惚，仿佛那个被夸奖的人不是你，而是你扮演的一个角色。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "conditional_love": 2
-            }
-          }
-        }
-      },
-      {
-        "id": 19,
-        "text": "成年后，你发现自己不自觉地：",
-        "options": {
-          "A": {
-            "text": "复制了家里温暖的那部分，把它给身边的人，像传递火种。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 1,
-              "security_base": 0
-            }
-          },
-          "B": {
-            "text": "复制了家里控制的那部分，因为那是你唯一知道的「爱」的形状。",
-            "archetype": "B",
-            "dimension_scores": {
-              "control_intensity": 2,
-              "emotional_neglect": 1
-            }
-          },
-          "C": {
-            "text": "刻意活成家里的反面，哪怕那并不适合自己，只是证明不同。",
-            "archetype": "C",
-            "dimension_scores": {
-              "emotional_neglect": 1,
-              "control_intensity": 1
-            }
-          },
-          "D": {
-            "text": "在关系中既渴望亲密，又在对方靠近时下意识想逃，想逃又想追。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 2,
-              "security_base": 1
-            }
-          }
-        }
-      },
-      {
-        "id": 20,
-        "text": "如果「家」是一个季节，它更像：",
-        "options": {
-          "A": {
-            "text": "初夏傍晚，有风，有饭菜香，有人喊你回家，你可以不回答。",
-            "archetype": "A",
-            "dimension_scores": {
-              "emotional_warmth": 3,
-              "security_base": 2,
-              "boundary_intrusion": 0
-            }
-          },
-          "B": {
-            "text": "深秋，很美，但你总担心第一场霜会冻坏什么，担心是常态。",
-            "archetype": "B",
-            "dimension_scores": {
-              "security_base": 1,
-              "emotional_warmth": 1
-            }
-          },
-          "C": {
-            "text": "梅雨季，潮湿，东西会发霉，但你已经习惯了那种气味，甚至依赖。",
-            "archetype": "C",
-            "dimension_scores": {
-              "security_base": 1,
-              "emotional_neglect": 1
-            }
-          },
-          "D": {
-            "text": "一个你只在日历上见过的节气，没有具体记忆，只有模糊的气候。",
-            "archetype": "D",
-            "dimension_scores": {
-              "emotional_neglect": 3,
-              "security_base": 3,
-              "control_intensity": 0
-            }
+        },
+        "D": {
+          "text": "内心毫无波澜，错了就错了，反正也没人会在意。",
+          "archetype": "D",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "emotional_neglect": 1
           }
         }
       }
-    ],
-    "scoring": {
-      "max_scores": {
-        "emotional_warmth": 36,
-        "security_base": 20,
-        "control_intensity": 25,
-        "conditional_love": 22,
-        "boundary_intrusion": 18,
-        "emotional_neglect": 38
-      },
-      "formulas": {
-        "dimension_percentage": "round((dimension_sum / max_score) * 100, 1)",
-        "archetype_ratio": "count(archetype_X) / total_questions * 100"
-      },
-      "rules": {
-        "dominant_archetype": "占比最高的原型（若并列则取维度分冲突更显著的那个）",
-        "mixed_mode": "若次高原型占比 ≥ 最高原型占比的 70%，则判定为混合模式"
-      },
-      "interpretation_thresholds": {
-        "emotional_warmth": {
-          "high": "> 75",
-          "mid": "40 - 75",
-          "low": "< 40"
+    },
+    {
+      "id": 3,
+      "text": "周末没有安排时，你更可能的状态是？",
+      "options": {
+        "A": {
+          "text": "安心放松，做点喜欢的事，觉得这是属于自己的时间。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 2,
+            "security_base": 2,
+            "boundary_intrusion": 0
+          }
         },
-        "security_base": {
-          "high": "> 70",
-          "mid": "35 - 70",
-          "low": "< 35"
+        "B": {
+          "text": "总觉得应该做点什么有意义的事，闲着会让我有些不安。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 1,
+            "emotional_neglect": 1
+          }
         },
-        "control_intensity": {
-          "high": "> 60",
-          "mid": "25 - 60",
-          "low": "< 25"
+        "C": {
+          "text": "有点焦虑，觉得别人都在进步，自己躺平就会落后。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "emotional_warmth": 1
+          }
         },
-        "conditional_love": {
-          "high": "> 60",
-          "mid": "25 - 60",
-          "low": "< 25"
-        },
-        "boundary_intrusion": {
-          "high": "> 55",
-          "mid": "20 - 55",
-          "low": "< 20"
-        },
-        "emotional_neglect": {
-          "high": "> 65",
-          "mid": "30 - 65",
-          "low": "< 30"
+        "D": {
+          "text": "习惯独处，但也说不上享受，就是不知道能约谁、找谁。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
         }
-      },
-      "profile_mapping": {
-        "secure_base": "EW > 75 且 SB > 70 且 CI < 40 且 EN < 35",
-        "control_penetration": "CI > 60 且 EN < 50",
-        "conditional_exchange": "CL > 60 且 EW < 60",
-        "emotional_desert": "EN > 65 且 EW < 45",
-        "mixed_control_neglect": "CI > 50 且 EN > 50",
-        "mixed_all": "三个及以上负面维度 > 50"
+      }
+    },
+    {
+      "id": 4,
+      "text": "需要做一个重要决定时，你通常怎么选？",
+      "options": {
+        "A": {
+          "text": "会听听身边人的建议，但最终相信自己的判断。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 2,
+            "security_base": 1
+          }
+        },
+        "B": {
+          "text": "反复权衡利弊，选那个最稳妥、最不容易出错的。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "security_base": 1
+          }
+        },
+        "C": {
+          "text": "选那个看起来最拿得出手、说出来不会让人失望的。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "control_intensity": 1
+          }
+        },
+        "D": {
+          "text": "拖到最后不得不选，或者干脆让别人帮我拿主意。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "boundary_intrusion": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "text": "你取得了一个不错的成绩，你第一个想告诉谁？",
+      "options": {
+        "A": {
+          "text": "会自然地分享给亲近的人，知道他们会真心为我高兴。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "conditional_love": 0
+          }
+        },
+        "B": {
+          "text": "会告诉家人或领导，觉得有义务汇报一下，证明自己没让人失望。",
+          "archetype": "B",
+          "dimension_scores": {
+            "conditional_love": 1,
+            "control_intensity": 1
+          }
+        },
+        "C": {
+          "text": "看情况吧，不太确定对方是真的想听，还是只是礼貌回应。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 3,
+            "emotional_warmth": 1
+          }
+        },
+        "D": {
+          "text": "想了想还是算了，好像说出去也没什么意义，自己知道就好。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "emotional_warmth": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "text": "有人靠你很近说话或翻看你的手机时，你的感觉是？",
+      "options": {
+        "A": {
+          "text": "没什么特别感觉，信任的人靠近很自然，不太在意这些。",
+          "archetype": "A",
+          "dimension_scores": {
+            "boundary_intrusion": 0,
+            "emotional_warmth": 1
+          }
+        },
+        "B": {
+          "text": "很不舒服，会本能地往后退或把手机收起来，感觉被冒犯。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 1,
+            "boundary_intrusion": 2
+          }
+        },
+        "C": {
+          "text": "表面上保持微笑和配合，但心里会暗暗记下这个不太舒服的瞬间。",
+          "archetype": "C",
+          "dimension_scores": {
+            "boundary_intrusion": 1,
+            "conditional_love": 1
+          }
+        },
+        "D": {
+          "text": "有点困惑，不太确定自己是否有权利说不或者拒绝对方。",
+          "archetype": "D",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "emotional_neglect": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "text": "当你感到身心俱疲时，你通常会怎么做？",
+      "options": {
+        "A": {
+          "text": "主动找信任的人倾诉或寻求帮助，不介意暴露脆弱。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "security_base": 1,
+            "emotional_neglect": 0
+          }
+        },
+        "B": {
+          "text": "自己扛着，等扛过去了再说，不想让人觉得我脆弱或麻烦。",
+          "archetype": "B",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "control_intensity": 0
+          }
+        },
+        "C": {
+          "text": "会在别人面前展示一小部分疲惫，确保看起来不那么惨，又不会被说冷漠。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "emotional_warmth": 1
+          }
+        },
+        "D": {
+          "text": "心里希望有人发现我的状态不好，但如果没人注意到，也不会主动开口。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "text": "和别人发生矛盾后，你通常的反应是？",
+      "options": {
+        "A": {
+          "text": "吵完了就翻篇，不会记仇，觉得沟通清楚就好。",
+          "archetype": "A",
+          "dimension_scores": {
+            "security_base": 1,
+            "emotional_warmth": 2,
+            "emotional_neglect": 0
+          }
+        },
+        "B": {
+          "text": "表面假装没事，但内心会冷战，等着对方先低头。",
+          "archetype": "B",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "control_intensity": 0
+          }
+        },
+        "C": {
+          "text": "会反思是不是自己的问题，然后主动去修复关系，哪怕不是自己的错。",
+          "archetype": "C",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "control_intensity": 1
+          }
+        },
+        "D": {
+          "text": "直接回避，觉得解释和争吵都没用，不如让时间冲淡一切。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 1,
+            "boundary_intrusion": 1,
+            "security_base": 0
+          }
+        }
+      }
+    },
+    {
+      "id": 9,
+      "text": "别人送你一件你并不需要或喜欢的礼物，你会？",
+      "options": {
+        "A": {
+          "text": "真心感谢对方的心意，但也会坦诚地告诉对方我更喜欢什么。",
+          "archetype": "A",
+          "dimension_scores": {
+            "boundary_intrusion": 0,
+            "emotional_warmth": 1,
+            "conditional_love": 0
+          }
+        },
+        "B": {
+          "text": "装作很喜欢的样子，内心却因为辜负了别人的心意而自责。",
+          "archetype": "B",
+          "dimension_scores": {
+            "conditional_love": 1,
+            "control_intensity": 1
+          }
+        },
+        "C": {
+          "text": "会想：这个礼物是送给我本人的，还是送给他们心目中那个「应该的我」？",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "boundary_intrusion": 1
+          }
+        },
+        "D": {
+          "text": "有点不知所措，不太习惯收到礼物，甚至觉得受之有愧。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "conditional_love": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 10,
+      "text": "回想你情绪最崩溃的一次，当时的场景是？",
+      "options": {
+        "A": {
+          "text": "有人陪在我身边，没有说太多话，但让我感觉不是一个人。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "emotional_neglect": 0
+          }
+        },
+        "B": {
+          "text": "我被要求「别哭了，哭解决不了问题」，然后情绪被硬生生压了回去。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "emotional_warmth": 1
+          }
+        },
+        "C": {
+          "text": "我躲起来哭，哭完还装作什么都没发生过，不想给别人添麻烦。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_neglect": 1,
+            "security_base": 0
+          }
+        },
+        "D": {
+          "text": "哭了也没人注意到，或者被人说「至于嘛」，从此学会了不再轻易掉眼泪。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 3,
+            "emotional_warmth": 0
+          }
+        }
+      }
+    },
+    {
+      "id": 11,
+      "text": "你怎么看待「求助」这件事？",
+      "options": {
+        "A": {
+          "text": "需要的时候就开口，不觉得丢人，别人需要时我也会帮忙。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "security_base": 1
+          }
+        },
+        "B": {
+          "text": "尽量不求人，求人前要做好充分的准备和理由，不能让人觉得我不行。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "boundary_intrusion": 1
+          }
+        },
+        "C": {
+          "text": "偶尔求助，但会精确计算分寸，不能让对方觉得我太麻烦或太依赖。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "emotional_warmth": 1
+          }
+        },
+        "D": {
+          "text": "基本不会主动求助，觉得说了也没用，还是自己解决更靠谱。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 12,
+      "text": "面对自己的缺点时，你内心的声音更接近？",
+      "options": {
+        "A": {
+          "text": "「人都有不完美的地方，接受它，不影响我成为一个还不错的人。」",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 1,
+            "security_base": 0
+          }
+        },
+        "B": {
+          "text": "「你怎么总是不够好？再努力一点，别让别人发现你的短板。」",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "conditional_love": 1
+          }
+        },
+        "C": {
+          "text": "「只要别人不发现，这个缺点就等于不存在。」",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "boundary_intrusion": 1
+          }
+        },
+        "D": {
+          "text": "「我不太确定怎么样算好、怎么样算不好，标准一直在变。」",
+          "archetype": "D",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "emotional_neglect": 2,
+            "conditional_love": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 13,
+      "text": "如果要离开一个待了很久的地方或状态，你的内心感受是？",
+      "options": {
+        "A": {
+          "text": "有些不舍，但也期待新的开始，相信美好会延续下去。",
+          "archetype": "A",
+          "dimension_scores": {
+            "security_base": 3,
+            "emotional_warmth": 1
+          }
+        },
+        "B": {
+          "text": "如释重负终于自由了，但同时又有些不安，不确定自己能不能搞定。",
+          "archetype": "B",
+          "dimension_scores": {
+            "security_base": 1,
+            "control_intensity": 1
+          }
+        },
+        "C": {
+          "text": "告诉自己要理性，不要太多愁善感，往前走就对了。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
+        },
+        "D": {
+          "text": "反复确认自己是否做了正确的决定，担心一转身就回不去了。",
+          "archetype": "D",
+          "dimension_scores": {
+            "security_base": 2,
+            "emotional_neglect": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 14,
+      "text": "关于「心里话」这件事，你更接近哪种状态？",
+      "options": {
+        "A": {
+          "text": "想说就说，不想说也不觉得有压力，分享是自然的不是被迫的。",
+          "archetype": "A",
+          "dimension_scores": {
+            "boundary_intrusion": 0,
+            "security_base": 1,
+            "emotional_warmth": 1
+          }
+        },
+        "B": {
+          "text": "不太敢说心里话，怕被抓住把柄或成为别人评判我的依据。",
+          "archetype": "B",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "control_intensity": 1
+          }
+        },
+        "C": {
+          "text": "会说一部分，但会筛选什么该说什么不该说，害怕说错话让人失望。",
+          "archetype": "C",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "emotional_warmth": 1
+          }
+        },
+        "D": {
+          "text": "不太确定什么该分享什么不该，从小就没有人真正问过我的想法。",
+          "archetype": "D",
+          "dimension_scores": {
+            "boundary_intrusion": 3,
+            "emotional_neglect": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 15,
+      "text": "当别人获得了你也很想要的东西，你内心的第一反应是？",
+      "options": {
+        "A": {
+          "text": "有点羡慕但不会嫉妒，别人值得，我继续努力也会有。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 1,
+            "security_base": 1
+          }
+        },
+        "B": {
+          "text": "会提醒自己要更努力，必须做得更好才能被看见、被肯定。",
+          "archetype": "B",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "control_intensity": 1
+          }
+        },
+        "C": {
+          "text": "告诉自己不要抱太大期待，期待越少失望就越小。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_neglect": 1,
+            "conditional_love": 1
+          }
+        },
+        "D": {
+          "text": "松一口气，被关注其实是压力，不被注意反而更轻松自由。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 1,
+            "conditional_love": 1,
+            "boundary_intrusion": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 16,
+      "text": "你怎么看待生活中那些「规矩」？",
+      "options": {
+        "A": {
+          "text": "大多数规则有它的道理，但必要时也可以灵活变通。",
+          "archetype": "A",
+          "dimension_scores": {
+            "security_base": 2,
+            "control_intensity": 0
+          }
+        },
+        "B": {
+          "text": "会尽量遵守，违反规则会让我感到不安和焦虑。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "security_base": 1
+          }
+        },
+        "C": {
+          "text": "有些矛盾——有的规则值得遵守，有的只是别人用来约束我的工具。",
+          "archetype": "C",
+          "dimension_scores": {
+            "boundary_intrusion": 2,
+            "security_base": 1,
+            "control_intensity": 1
+          }
+        },
+        "D": {
+          "text": "不太在意，因为我经历的规则总是在变，适应就好。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 17,
+      "text": "你是在什么时候意识到「我长大了」的？",
+      "options": {
+        "A": {
+          "text": "发现自己也能保护和照顾别人了，那种感觉很自然很踏实。",
+          "archetype": "A",
+          "dimension_scores": {
+            "security_base": 1,
+            "emotional_warmth": 0
+          }
+        },
+        "B": {
+          "text": "发现自己终于能做那些一直被限制的事了，有一种带着快感的自由。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 1,
+            "emotional_neglect": 1
+          }
+        },
+        "C": {
+          "text": "发现父母其实也不是万能的，他们也会犯错和脆弱。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_warmth": 1,
+            "security_base": 0
+          }
+        },
+        "D": {
+          "text": "发现早就习惯了独自面对一切，从来没人教过我怎么做，都是自己摸索。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 18,
+      "text": "听到别人真诚地夸奖你时，你通常会？",
+      "options": {
+        "A": {
+          "text": "心里暖暖的，安心收下，觉得对方是真诚的。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 2,
+            "conditional_love": 0
+          }
+        },
+        "B": {
+          "text": "有点不好意思，赶紧找理由证明自己没那么好，怕下次达不到期待。",
+          "archetype": "B",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "conditional_love": 1
+          }
+        },
+        "C": {
+          "text": "心里有些警觉，在想对方是不是有什么目的或接下来要我做什么。",
+          "archetype": "C",
+          "dimension_scores": {
+            "conditional_love": 2,
+            "boundary_intrusion": 1
+          }
+        },
+        "D": {
+          "text": "有些恍惚，觉得对方夸的不是真正的我，而是我努力扮演的那个角色。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "conditional_love": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 19,
+      "text": "回顾自己现在的为人处世，你发现一个什么模式？",
+      "options": {
+        "A": {
+          "text": "我不自觉地成了能给身边人温暖和支持的人，我喜欢这样的自己。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 1,
+            "security_base": 0
+          }
+        },
+        "B": {
+          "text": "我发现自己对很多事情都想掌控，否则就会焦虑，有点累但停不下来。",
+          "archetype": "B",
+          "dimension_scores": {
+            "control_intensity": 2,
+            "emotional_neglect": 1
+          }
+        },
+        "C": {
+          "text": "我发现自己要么在努力活成别人期待的样子，要么在刻意活成完全相反的样子。",
+          "archetype": "C",
+          "dimension_scores": {
+            "emotional_neglect": 1,
+            "control_intensity": 1
+          }
+        },
+        "D": {
+          "text": "我既渴望被爱，又害怕靠太近，总在接近和逃离之间反复。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 2,
+            "security_base": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 20,
+      "text": "如果用一种画面来形容你当下的内心世界，你会选？",
+      "options": {
+        "A": {
+          "text": "一片阳光洒落的湖面，清澈开阔，能映照天空也能容纳风雨。",
+          "archetype": "A",
+          "dimension_scores": {
+            "emotional_warmth": 3,
+            "security_base": 2,
+            "boundary_intrusion": 0
+          }
+        },
+        "B": {
+          "text": "一座结构清晰的建筑，每层都有规划，但也有锁着的房间和不能开的窗。",
+          "archetype": "B",
+          "dimension_scores": {
+            "security_base": 1,
+            "emotional_warmth": 1
+          }
+        },
+        "C": {
+          "text": "一面挂满奖状和证书的墙，但墙后面是一个不确定自己是不是真的住在那里的房间。",
+          "archetype": "C",
+          "dimension_scores": {
+            "security_base": 1,
+            "emotional_neglect": 1
+          }
+        },
+        "D": {
+          "text": "一片广阔的荒野，自由但空旷，风很大，偶尔会感到荒凉。",
+          "archetype": "D",
+          "dimension_scores": {
+            "emotional_neglect": 3,
+            "security_base": 3,
+            "control_intensity": 0
+          }
+        }
       }
     }
+  ],
+  "scoring": {
+    "max_scores": {
+      "emotional_warmth": 36,
+      "security_base": 20,
+      "control_intensity": 25,
+      "conditional_love": 22,
+      "boundary_intrusion": 18,
+      "emotional_neglect": 38
+    },
+    "formulas": {
+      "dimension_percentage": "round((dimension_sum / max_score) * 100, 1)",
+      "archetype_ratio": "count(archetype_X) / total_questions * 100"
+    },
+    "rules": {
+      "dominant_archetype": "占比最高的原型（若并列则取维度分冲突更显著的那个）",
+      "mixed_mode": "若次高原型占比 ≥ 最高原型占比的 70%，则判定为混合模式"
+    },
+    "interpretation_thresholds": {
+      "emotional_warmth": {
+        "high": "> 75",
+        "mid": "40 - 75",
+        "low": "< 40"
+      },
+      "security_base": {
+        "high": "> 70",
+        "mid": "35 - 70",
+        "low": "< 35"
+      },
+      "control_intensity": {
+        "high": "> 60",
+        "mid": "25 - 60",
+        "low": "< 25"
+      },
+      "conditional_love": {
+        "high": "> 60",
+        "mid": "25 - 60",
+        "low": "< 25"
+      },
+      "boundary_intrusion": {
+        "high": "> 55",
+        "mid": "20 - 55",
+        "low": "< 20"
+      },
+      "emotional_neglect": {
+        "high": "> 65",
+        "mid": "30 - 65",
+        "low": "< 30"
+      }
+    },
+    "profile_mapping": {
+      "secure_base": "EW > 75 且 SB > 70 且 CI < 40 且 EN < 35",
+      "control_penetration": "CI > 60 且 EN < 50",
+      "conditional_exchange": "CL > 60 且 EW < 60",
+      "emotional_desert": "EN > 65 且 EW < 45",
+      "mixed_control_neglect": "CI > 50 且 EN > 50",
+      "mixed_all": "三个及以上负面维度 > 50"
+    }
   }
+}

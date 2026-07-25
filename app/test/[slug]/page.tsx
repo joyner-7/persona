@@ -20,7 +20,6 @@ export default async function TestPage({
       <header className="px-4 py-4 border-b border-zinc-200 dark:border-zinc-800">
         <div className="max-w-2xl mx-auto flex items-center justify-between">
           <h1 className="text-lg font-semibold">{test.name}</h1>
-          <span className="text-sm text-zinc-500">{test.estimatedTime}</span>
         </div>
       </header>
       <TestController slug={slug} />
