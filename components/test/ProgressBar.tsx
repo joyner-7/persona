@@ -1,19 +1,29 @@
 "use client";
 
 interface ProgressBarProps {
-  current: number;
-  total: number;
+  currentQuestion: number;
+  totalQuestions: number;
 }
 
-export function ProgressBar({ current, total }: ProgressBarProps) {
-  const percentage = Math.round((current / total) * 100);
+export function ProgressBar({
+  currentQuestion,
+  totalQuestions,
+}: ProgressBarProps) {
+  const boundedCurrent =
+    totalQuestions > 0
+      ? Math.min(Math.max(currentQuestion, 1), totalQuestions)
+      : 0;
+  const percentage =
+    totalQuestions > 0
+      ? Math.round((boundedCurrent / totalQuestions) * 100)
+      : 0;
 
   return (
     <div className="w-full px-4 py-3">
       <div className="max-w-2xl mx-auto">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs text-zinc-500 dark:text-zinc-400">
-            进度
+            第 {boundedCurrent} / {totalQuestions} 题
           </span>
           <span className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
             {percentage}%

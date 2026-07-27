@@ -153,8 +153,8 @@ export function TestController({ slug }: TestControllerProps) {
   return (
     <div className="flex-1 flex flex-col">
       <ProgressBar
-        current={currentQuestionIndex}
-        total={questions.length}
+        currentQuestion={currentQuestionIndex + 1}
+        totalQuestions={questions.length}
       />
 
       <div className="flex-1 flex flex-col justify-center">
@@ -182,21 +182,6 @@ export function TestController({ slug }: TestControllerProps) {
           <ArrowLeft size={16} />
           上一题
         </button>
-
-        {currentAnswer && currentQuestionIndex < questions.length - 1 && (
-          <button
-            onClick={() => {
-              setAnswer(slug, {
-                questionId: currentQuestion.id,
-                selectedOption: currentAnswer.selectedOption,
-              });
-            }}
-            className="flex items-center gap-2 px-6 py-2 text-sm bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 rounded-full hover:opacity-90 transition-opacity"
-          >
-            下一题
-            <ArrowLeft size={16} className="rotate-180" />
-          </button>
-        )}
 
         <button
           onClick={handleReset}

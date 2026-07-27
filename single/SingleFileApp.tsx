@@ -134,7 +134,10 @@ export function SingleFileApp() {
         </div>
       </header>
 
-      <ProgressBar current={currentQuestionIndex} total={questions.length} />
+      <ProgressBar
+        currentQuestion={currentQuestionIndex + 1}
+        totalQuestions={questions.length}
+      />
 
       <div className="flex flex-1 flex-col justify-center">
         <AnimatePresence mode="wait">
