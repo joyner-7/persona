@@ -242,15 +242,17 @@ function ReportSection({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: Number(index) * 0.04 }}
-      className="mb-16"
+      className="border-t border-zinc-200 py-9 first:border-t-0 dark:border-zinc-800"
     >
-      <div className="mb-7 flex items-start gap-4">
-        <span className="pt-1 text-xs font-semibold text-zinc-400">{index}</span>
+      <div className="mb-6 flex items-center gap-3">
+        <span className="text-xs font-medium tracking-[0.16em] text-zinc-400">
+          {index}
+        </span>
         <div>
-          <p className="mb-1 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+          <p className="mb-0.5 text-xs text-zinc-500 dark:text-zinc-400">
             {eyebrow}
           </p>
-          <h2 className="text-2xl font-bold leading-8">{title}</h2>
+          <h2 className="text-lg font-semibold leading-7">{title}</h2>
         </div>
       </div>
       {children}
@@ -299,97 +301,108 @@ export function ResultShell({
 
   return (
     <main className="min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <article className="mx-auto max-w-4xl px-5 py-10 md:px-8 md:py-16">
+      <article className="mx-auto max-w-[42rem] px-6 py-8 sm:px-8 md:py-12">
         <motion.header
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
-          className="mb-16"
+          className="mb-8 flex flex-col text-center"
         >
-          <blockquote className="mb-10 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
-            <p className="text-lg leading-8 text-zinc-700 dark:text-zinc-200">
+          <blockquote className="order-4 mx-auto mt-7 max-w-xl py-5">
+            <p className="text-base leading-7 text-zinc-700 dark:text-zinc-200">
               “{report.quote}”
             </p>
-            <cite className="mt-2 block text-sm not-italic text-zinc-500 dark:text-zinc-400">
+            <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
               {report.quoteSource}
             </cite>
-            <p className="mt-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-              {report.quoteNote}
-            </p>
           </blockquote>
 
-          <div className="mb-5 flex items-center gap-3">
-            <span className={`h-2.5 w-2.5 ${report.accent}`} />
-            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
-              你的主要关系脚本
-            </p>
+          <div className="order-1 mb-7 flex items-center justify-between text-[10px] font-medium tracking-[0.18em] text-zinc-400">
+            <span>PERSONA</span>
+            <span>NO. 20 / 20</span>
           </div>
-          <h1 className="text-4xl font-bold leading-tight md:text-5xl">
-            {report.label}
-          </h1>
+          <div className="order-2">
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              你的家庭关系脚本是
+            </p>
+            <h1 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
+              {report.label}
+            </h1>
 
-          <p className="mt-6 max-w-3xl text-xl leading-9 text-zinc-700 dark:text-zinc-200">
+          </div>
+          <p className="order-3 mx-auto mt-6 max-w-xl text-sm leading-7 text-zinc-600 dark:text-zinc-300">
             {report.summary}
           </p>
-
         </motion.header>
 
-        <ReportSection index="01" eyebrow="核心判断" title="这套模式如何保护你，又如何限制你">
-          <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
+        <ReportSection index="01" eyebrow="关系画像" title="你不是被定义，而是在熟悉中保护自己">
+          <article className="space-y-5">
+            <blockquote className="border-l-2 border-zinc-300 pl-4 dark:border-zinc-700">
+              <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                “婴儿与照顾者之间的情感纽带，不只关乎温暖，更关乎生存。人会用一生去找回最初那种被稳稳接住的感觉。”
+              </p>
+              <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
+                ——约翰·鲍尔比《安全基地》
+              </cite>
+            </blockquote>
             <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              “婴儿与照顾者之间的情感纽带，不只关乎温暖，更关乎生存。人会用一生去找回最初那种被稳稳接住的感觉。”
+              鲍尔比提醒我们：每一种保护自己的方式，最初都是为了活下去。下面的规则曾经帮你获得过安全，现在的问题是——它是否还在帮你获得你真正需要的东西？
             </p>
-            <cite className="mt-1 block text-sm not-italic text-zinc-500">
-              ——约翰·鲍尔比《安全基地》
-            </cite>
-          </blockquote>
-          <p className="mb-6 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-            鲍尔比提醒我们：每一种保护自己的方式，最初都是为了活下去。下面的规则曾经帮你获得过安全，现在的问题是——它是否还在帮你获得你真正需要的东西？
-          </p>
-          <div className="mb-8 border-y border-zinc-200 py-5 dark:border-zinc-800">
-            <p className="mb-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-              你较早学会的关系规则
-            </p>
-            <p className="text-lg font-semibold leading-8">{report.coreRule}</p>
-          </div>
-          <div className="space-y-4">
-            {[
-              ["它给你的能力", report.strength],
-              ["它让你付出的代价", report.cost],
-              ["最容易触发它的时刻", report.trigger],
-            ].map(([label, text]) => (
-              <div key={label}>
-                <h3 className="mb-1 text-sm font-semibold">{label}</h3>
-                <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{text}</p>
-              </div>
-            ))}
-          </div>
+            <div className="border-t border-zinc-200 pt-5 dark:border-zinc-800">
+              <p className="mb-2 text-xs text-zinc-500 dark:text-zinc-400">
+                你较早学会的关系规则
+              </p>
+              <p className="text-lg font-semibold leading-8">{report.coreRule}</p>
+            </div>
+            <dl className="space-y-4 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+              {[
+                ["它给你的能力", report.strength],
+                ["它让你付出的代价", report.cost],
+                ["最容易触发它的时刻", report.trigger],
+              ].map(([label, text]) => (
+                <div key={label}>
+                  <dt className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                    {label}
+                  </dt>
+                  <dd className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                    {text}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </article>
         </ReportSection>
 
-        <ReportSection index="02" eyebrow="现实映射" title="它可能出现在这些关系时刻">
-          <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
+        <ReportSection index="02" eyebrow="关系侧写" title="它如何出现在你的关系里">
+          <article className="space-y-5">
+            <blockquote className="border-l-2 border-zinc-300 pl-4 dark:border-zinc-700">
+              <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                “孩子不是在完美的环境中长大，而是在被理解的环境中长大。那些没有被说出口的需要，最终会变成身体语言和行为模式。”
+              </p>
+              <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
+                ——唐纳德·温尼科特《抱持与解释》
+              </cite>
+            </blockquote>
             <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              “孩子不是在完美的环境中长大，而是在被理解的环境中长大。那些没有被说出口的需要，最终会变成身体语言和行为模式。”
+              温尼科特说的“身体语言”，就是你无意识中在每种关系里重复的脚本。看看下面这些场景——哪一个你最熟悉？
             </p>
-            <cite className="mt-1 block text-sm not-italic text-zinc-500">
-              ——唐纳德·温尼科特《抱持与解释》
-            </cite>
-          </blockquote>
-          <p className="mb-6 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-            温尼科特说的“身体语言”，就是你无意识中在每种关系里重复的脚本。看看下面这些场景——哪一个你最熟悉？
-          </p>
-          <div className="space-y-5">
-            {report.scenes.map((scene) => (
-              <div key={scene.label}>
-                <p className="mb-1 text-xs font-semibold text-zinc-500">{scene.label}</p>
-                <h3 className="mb-1 text-sm font-semibold">{scene.title}</h3>
-                <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">{scene.body}</p>
-              </div>
-            ))}
-          </div>
+            <div className="space-y-5 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+              {report.scenes.map((scene) => (
+                <div key={scene.label}>
+                  <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                    {scene.label}
+                  </p>
+                  <h3 className="mb-1 text-sm font-semibold">{scene.title}</h3>
+                  <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                    {scene.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </article>
         </ReportSection>
 
-        <ReportSection index="03" eyebrow="计算依据" title="这个结果是怎样得出的">
+        <ReportSection index="03" eyebrow="关系坐标" title="此刻最值得留意的几个方向">
           <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
             <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
               “认识你自己的阴影，不是为了消灭它，而是为了不再被它无声地支配。类型不是囚笼，而是理解自己的第一张地图。”
@@ -398,22 +411,15 @@ export function ResultShell({
               ——卡尔·荣格《心理类型》
             </cite>
           </blockquote>
-          <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-            荣格一生都在强调：看见自己走在哪条路上，比急着改变方向更重要。以下数据来自你的答题模式分析。每个维度都在回答一个问题——你的情感温度有多高？控制在多大程度上塑造了你的选择？忽视是否成了你最熟悉的保护色？这些分数不是评判，而是线索：它们告诉你哪几个维度对当前模式影响最大，哪几个方向最值得你停下来看一看。
+          <p className="mb-3 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+            分数不是判断，而是理解关系反应的几个坐标。雷达图和下方卡片完整呈现这次答题的六项维度。
           </p>
           <ResultEvidence
             dimensions={result.dimensions}
-            threeAxes={meta.threeAxes}
-            keyInfluences={meta.keyInfluences}
-            archetypeRatios={meta.archetypeRatios}
-            typeLabels={Object.fromEntries(
-              Object.entries(typeReports).map(([key, value]) => [key, value.label])
-            )}
-            isMixedMode={meta.isMixedMode}
           />
         </ReportSection>
 
-        <ReportSection index="04" eyebrow="自动反应" title="关系如何一步步走进熟悉的循环">
+        <ReportSection index="04" eyebrow="待定" title="关系如何走进熟悉的循环">
           <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
             循环不是命运。它只是大脑在不确定时优先调用的旧路径；看清从哪一步开始，才有机会在那里加入新的选择。
           </p>
@@ -425,7 +431,7 @@ export function ResultShell({
           />
         </ReportSection>
 
-        <ReportSection index="05" eyebrow="行动建议" title="先不要改变全部，只练习一个新选择">
+        <ReportSection index="05" eyebrow="关系处方" title="先练习一个新的选择">
           <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
             <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
               “重要的不是被给予了什么，而是如何利用被给予的东西。每一种‘不幸’的脚本背后，都潜藏着一个更自由的选择——哪怕它只有一根头发丝那么细。”
@@ -437,7 +443,7 @@ export function ResultShell({
           <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
             阿德勒这句话的意思是：过去发生的事情你无法改变，但你可以选择现在怎么用它。<strong>下面这个练习只要求你做一件事</strong>——在面对那个熟悉的时刻时，给自己一个旧模式之外的新选项。不是推翻自己，只是加一个岔路。
           </p>
-          <div className={`p-6 md:p-8 ${report.softAccent}`}>
+          <div className={`border border-current/15 p-5 md:p-6 ${report.softAccent}`}>
             <div className="mb-5 flex items-center gap-2">
               <Sparkles size={18} aria-hidden="true" />
               <p className="text-sm font-semibold">
@@ -471,18 +477,18 @@ export function ResultShell({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.32 }}
-          className="flex flex-col gap-3 border-t border-zinc-200 pt-8 dark:border-zinc-800 sm:flex-row"
+          className="mt-2 flex flex-col gap-3 border-t border-zinc-200 pt-8 dark:border-zinc-800 sm:flex-row"
         >
           <button
             onClick={handleShare}
-            className="flex min-h-12 flex-1 items-center justify-center gap-2 bg-zinc-950 px-5 py-3 font-medium text-white transition-opacity hover:opacity-85 dark:bg-zinc-100 dark:text-zinc-950"
+            className="flex min-h-11 flex-1 items-center justify-center gap-2 border border-zinc-950 bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-85 dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-950"
           >
             <Share2 size={18} aria-hidden="true" />
             分享结果
           </button>
           <button
             onClick={onRetake}
-            className="flex min-h-12 flex-1 items-center justify-center gap-2 border border-zinc-300 px-5 py-3 font-medium transition-colors hover:border-zinc-950 dark:border-zinc-700 dark:hover:border-zinc-100"
+            className="flex min-h-11 flex-1 items-center justify-center gap-2 border border-zinc-300 px-5 py-3 text-sm font-medium transition-colors hover:border-zinc-950 dark:border-zinc-700 dark:hover:border-zinc-100"
           >
             <RefreshCw size={18} aria-hidden="true" />
             重新测试

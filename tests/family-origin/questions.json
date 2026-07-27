@@ -446,7 +446,7 @@
     },
     {
       "id": 11,
-      "text": "你怎么看待「求助」这件事？",
+      "text": "你怎么看待求助这件事？",
       "options": {
         "A": {
           "text": "需要的时候就开口，不觉得丢人，别人需要时我也会帮忙。",
@@ -487,7 +487,7 @@
       "text": "面对自己的缺点时，你内心的声音更接近？",
       "options": {
         "A": {
-          "text": "「人都有不完美的地方，接受它，不影响我成为一个还不错的人。」",
+          "text": "人都有不完美的地方，接受它，不影响我成为一个还不错的人。",
           "archetype": "A",
           "dimension_scores": {
             "emotional_warmth": 1,
@@ -495,7 +495,7 @@
           }
         },
         "B": {
-          "text": "「你怎么总是不够好？再努力一点，别让别人发现你的短板。」",
+          "text": "你怎么总是不够好？再努力一点，别让别人发现你的短板。",
           "archetype": "B",
           "dimension_scores": {
             "control_intensity": 2,
@@ -503,7 +503,7 @@
           }
         },
         "C": {
-          "text": "「只要别人不发现，这个缺点就等于不存在。」",
+          "text": "只要别人不发现，这个缺点就等于不存在。",
           "archetype": "C",
           "dimension_scores": {
             "conditional_love": 2,
@@ -511,7 +511,7 @@
           }
         },
         "D": {
-          "text": "「我不太确定怎么样算好、怎么样算不好，标准一直在变。」",
+          "text": "我不太确定怎么样算好、怎么样算不好，标准一直在变。",
           "archetype": "D",
           "dimension_scores": {
             "boundary_intrusion": 2,
@@ -561,7 +561,7 @@
     },
     {
       "id": 14,
-      "text": "关于「心里话」这件事，你更接近哪种状态？",
+      "text": "关于心里话这件事，你更接近哪种状态？",
       "options": {
         "A": {
           "text": "想说就说，不想说也不觉得有压力，分享是自然的不是被迫的。",
@@ -639,7 +639,7 @@
     },
     {
       "id": 16,
-      "text": "你怎么看待生活中那些「规矩」？",
+      "text": "你怎么看待生活中那些规矩？",
       "options": {
         "A": {
           "text": "大多数规则有它的道理，但必要时也可以灵活变通。",
@@ -678,7 +678,7 @@
     },
     {
       "id": 17,
-      "text": "你是在什么时候意识到「我长大了」的？",
+      "text": "你是在什么时候意识到我长大了的？",
       "options": {
         "A": {
           "text": "发现自己也能保护和照顾别人了，那种感觉很自然很踏实。",
@@ -792,40 +792,38 @@
     },
     {
       "id": 20,
-      "text": "如果用一种画面来形容你当下的内心世界，你会选？",
+      "text": "接到家里电话时，你身体的第一反应是：",
       "options": {
         "A": {
-          "text": "一片阳光洒落的湖面，清澈开阔，能映照天空也能容纳风雨。",
+          "text": "放松，像打开一盏熟悉的灯，知道光会照向哪里。",
           "archetype": "A",
           "dimension_scores": {
             "emotional_warmth": 3,
-            "security_base": 2,
-            "boundary_intrusion": 0
+            "security_base": 1
           }
         },
         "B": {
-          "text": "一座结构清晰的建筑，每层都有规划，但也有锁着的房间和不能开的窗。",
+          "text": "胃部轻微收缩，进入汇报模式，准备接受盘问或指令。",
           "archetype": "B",
           "dimension_scores": {
-            "security_base": 1,
-            "emotional_warmth": 1
+            "control_intensity": 2,
+            "boundary_intrusion": 1
           }
         },
         "C": {
-          "text": "一面挂满奖状和证书的墙，但墙后面是一个不确定自己是不是真的住在那里的房间。",
+          "text": "计算通话时长，确保达到「合格」的关心额度。",
           "archetype": "C",
           "dimension_scores": {
-            "security_base": 1,
-            "emotional_neglect": 1
+            "conditional_love": 2,
+            "emotional_warmth": 1
           }
         },
         "D": {
-          "text": "一片广阔的荒野，自由但空旷，风很大，偶尔会感到荒凉。",
+          "text": "犹豫接不接，接起来也不知道说什么，只剩礼貌的空白。",
           "archetype": "D",
           "dimension_scores": {
-            "emotional_neglect": 3,
-            "security_base": 3,
-            "control_intensity": 0
+            "emotional_neglect": 2,
+            "security_base": 1
           }
         }
       }
