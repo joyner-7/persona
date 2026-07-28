@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { getTest, getAllTests } from "@/tests/_registry";
 import { TestController } from "@/components/test/TestController";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
 export function generateStaticParams() {
   return getAllTests().map((t) => ({ slug: t.slug }));
@@ -16,11 +18,9 @@ export default async function TestPage({
   if (!test) return notFound();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="px-4 py-4 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-2xl mx-auto flex items-center justify-between">
-          <h1 className="text-lg font-semibold">{test.name}</h1>
-        </div>
+    <div className={cn(ui.page, "flex flex-col")}>
+      <header className={cn(ui.container, "border-b border-divider py-6")}>
+        <h1 className={cn(ui.h3, "text-center sm:text-left")}>{test.name}</h1>
       </header>
       <TestController slug={slug} />
     </div>

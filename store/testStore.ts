@@ -77,10 +77,10 @@ export const useTestStore = create<TestStoreState>()(
               [slug]: {
                 ...session,
                 answers: newAnswers,
-                currentQuestionIndex: Math.min(
-                  newAnswers.length,
-                  session.currentQuestionIndex + 1
-                ),
+                currentQuestionIndex:
+                  idx >= 0
+                    ? session.currentQuestionIndex
+                    : session.currentQuestionIndex + 1,
               },
             },
           };

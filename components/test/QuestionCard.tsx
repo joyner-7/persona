@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { Question, Option } from "@/engines/core/types";
 import type { ReflectionFocus } from "@/store/testStore";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
 interface QuestionCardProps {
   question: Question;
@@ -11,6 +12,8 @@ interface QuestionCardProps {
   onAnswer: (option: Option) => void;
   selectedOption?: string;
   focus?: ReflectionFocus;
+  /** 切题过渡中禁用选项，防止误触下一题 */
+  disabled?: boolean;
 }
 
 const focusLabels: Record<ReflectionFocus, string> = {
@@ -28,65 +31,55 @@ export function QuestionCard({
   onAnswer,
   selectedOption,
   focus,
+  disabled = false,
 }: QuestionCardProps) {
   return (
-    <motion.div
-      key={question.id}
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -50 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="w-full max-w-2xl mx-auto px-4 py-8"
-    >
-      <div className="mb-2 text-sm text-zinc-500 dark:text-zinc-400">
+    <div className={cn(ui.container, "py-10 md:py-14")}>
+      <p className={cn(ui.caption, "mb-3")}>
         问题 {questionNumber} / {totalQuestions}
-      </div>
+      </p>
+
       {focus && (
-        <div className="mb-4 inline-flex rounded-full bg-zinc-100 dark:bg-zinc-800 px-3 py-1 text-xs text-zinc-500 dark:text-zinc-400">
-          {focusLabels[focus]}
+        <div className="mb-8">
+          <span className={ui.tag}>{focusLabels[focus]}</span>
         </div>
       )}
 
-      <h2 className="text-xl md:text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mb-8 leading-relaxed">
-        {question.text}
-      </h2>
+      <h2 className={cn(ui.h2, "mb-10 md:mb-12")}>{question.text}</h2>
 
-      <div className="space-y-3">
-        <AnimatePresence mode="popLayout">
-          {question.options.map((option, index) => (
-            <motion.button
+      <div
+        className={cn(
+          "space-y-4",
+          disabled && "pointer-events-none opacity-60"
+        )}
+        aria-disabled={disabled}
+      >
+        {question.options.map((option, index) => {
+          const isSelected = selectedOption === option.value;
+
+          return (
+            <button
               key={option.value}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.08 }}
+              type="button"
+              disabled={disabled}
               onClick={() => onAnswer(option)}
-              className={`
-                w-full text-left p-4 md:p-5 rounded-xl border-2 transition-all duration-200
-                min-h-[64px] flex items-center gap-3
-                ${
-                  selectedOption === option.value
-                    ? "border-zinc-900 bg-zinc-900 text-white dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-900"
-                    : "border-zinc-200 bg-white hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-500 dark:hover:bg-zinc-750"
-                }
-              `}
+              className={cn(ui.option, isSelected && ui.optionSelected)}
             >
               <span
-                className={`
-                flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium
-                ${
-                  selectedOption === option.value
-                    ? "bg-white text-zinc-900 dark:bg-zinc-900 dark:text-zinc-100"
-                    : "bg-zinc-100 text-zinc-600 dark:bg-zinc-700 dark:text-zinc-400"
-                }
-              `}
+                className={cn(
+                  "flex h-8 w-8 shrink-0 items-center justify-center rounded-pill text-sm",
+                  isSelected
+                    ? "border border-accent/40 bg-card text-accent"
+                    : "border border-border-card bg-accent-soft/60 text-text-sub"
+                )}
               >
                 {String.fromCharCode(65 + index)}
               </span>
-              <span className="text-base md:text-lg leading-relaxed">{option.label}</span>
-            </motion.button>
-          ))}
-        </AnimatePresence>
+              <span>{option.label}</span>
+            </button>
+          );
+        })}
       </div>
-    </motion.div>
+    </div>
   );
 }

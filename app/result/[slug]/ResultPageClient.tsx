@@ -13,9 +13,40 @@ import {
   type SharedResultSnapshot,
 } from "@/lib/result-share";
 import { ResultShell } from "@/components/result/ResultShell";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
 interface ResultPageProps {
   slug: string;
+}
+
+function EmptyState({
+  title,
+  description,
+  actionLabel,
+  onAction,
+}: {
+  title: string;
+  description: string;
+  actionLabel: string;
+  onAction: () => void;
+}) {
+  return (
+    <div className={cn(ui.page, "flex items-center justify-center px-6")}>
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="max-w-sm text-center"
+      >
+        <h1 className={cn(ui.h2, "mb-5")}>{title}</h1>
+        <p className={cn(ui.bodySm, "mb-10")}>{description}</p>
+        <button onClick={onAction} className={ui.btnPrimary}>
+          {actionLabel}
+        </button>
+      </motion.div>
+    </div>
+  );
 }
 
 export default function ResultPage({ slug }: ResultPageProps) {
@@ -126,47 +157,31 @@ export default function ResultPage({ slug }: ResultPageProps) {
 
   if (!mounted || loadingQuestions || snapshotState.status === "pending") {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-zinc-300 border-t-zinc-900 rounded-full animate-spin" />
+      <div className={cn(ui.page, "flex items-center justify-center")}>
+        <div className={ui.spinner} />
       </div>
     );
   }
 
   if (shouldShowInvalidSnapshot) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center max-w-sm">
-          <h1 className="text-2xl font-bold mb-4">结果链接已失效</h1>
-          <p className="text-zinc-500 mb-6">
-            这个分享链接里的结果数据无法读取。你可以重新完成 20 个场景选择，生成一份新的关系脚本地图。
-          </p>
-          <button
-            onClick={() => router.push(`/test/${slug}`)}
-            className="px-6 py-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 rounded-full font-medium"
-          >
-            开始测试
-          </button>
-        </div>
-      </div>
+      <EmptyState
+        title="结果链接已失效"
+        description="这个分享链接里的结果数据无法读取。你可以重新完成 20 个场景选择，生成一份新的关系脚本地图。"
+        actionLabel="开始测试"
+        onAction={() => router.push(`/test/${slug}`)}
+      />
     );
   }
 
   if (!canShowResult) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center max-w-sm">
-          <h1 className="text-2xl font-bold mb-4">尚未完成测试</h1>
-          <p className="text-zinc-500 mb-6">
-            先完成 20 个场景选择，再查看你的关系脚本地图。
-          </p>
-          <button
-            onClick={() => router.push(`/test/${slug}`)}
-            className="px-6 py-3 bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900 rounded-full font-medium"
-          >
-            开始测试
-          </button>
-        </div>
-      </div>
+      <EmptyState
+        title="尚未完成测试"
+        description="先完成 20 个场景选择，再查看你的关系脚本地图。"
+        actionLabel="开始测试"
+        onAction={() => router.push(`/test/${slug}`)}
+      />
     );
   }
 
@@ -176,7 +191,8 @@ export default function ResultPage({ slug }: ResultPageProps) {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen py-8"
+      transition={{ duration: 0.3 }}
+      className={ui.page}
     >
       <ResultShell
         result={result}

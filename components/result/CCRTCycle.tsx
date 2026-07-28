@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
 interface CCRTCycleProps {
   wish: string;
@@ -30,18 +32,22 @@ export function CCRTCycle({
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.08 }}
-            className="border-t border-zinc-200 py-5 dark:border-zinc-800 md:min-h-48 md:border-l md:border-t-0 md:px-4 md:py-4 first:md:border-l-0 first:md:pl-0 last:md:pr-0"
+            transition={{ delay: index * 0.06, duration: 0.3 }}
+            className={cn(
+              ui.cardStatic,
+              "my-2 p-5 md:min-h-44 md:border-l md:first:md:border-l-0",
+              index > 0 && "md:ml-0"
+            )}
           >
-            <span className="mb-3 block text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-              {index + 1} / {step.label}
+            <span className={cn(ui.label, "mb-4 block normal-case tracking-[0.08em]")}>
+              {index + 1} · {step.label}
             </span>
-            <p className="text-sm leading-6">{step.text}</p>
+            <p className={ui.bodySm}>{step.text}</p>
           </motion.div>
           {index < steps.length - 1 && (
-            <div className="flex h-6 items-center justify-center text-zinc-300 dark:text-zinc-700 md:h-44 md:px-1">
-              <ArrowDown size={17} className="md:hidden" aria-hidden="true" />
-              <ArrowRight size={17} className="hidden md:block" aria-hidden="true" />
+            <div className="flex h-8 items-center justify-center text-text-muted md:h-44 md:px-2">
+              <ArrowDown size={18} strokeWidth={1.5} className="md:hidden" aria-hidden="true" />
+              <ArrowRight size={18} strokeWidth={1.5} className="hidden md:block" aria-hidden="true" />
             </div>
           )}
         </div>

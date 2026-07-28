@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, RefreshCw, Share2, Sparkles } from "lucide-react";
 import { ScoreResult } from "@/engines/core/types";
 import type { ReflectionFocus } from "@/store/testStore";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 import { CCRTCycle } from "./CCRTCycle";
 import { ResultEvidence } from "./ResultEvidence";
 
@@ -53,8 +55,6 @@ interface TypeReport {
   cost: string;
   trigger: string;
   cycleOpening: string;
-  accent: string;
-  softAccent: string;
   scenes: { label: string; title: string; body: string }[];
 }
 
@@ -72,9 +72,6 @@ const typeReports: Record<string, TypeReport> = {
     trigger: "长期冷处理、反复越界或只有一方努力修复，会让你明显失去安全感。",
     cycleOpening:
       "当你急着解释、协调，想让关系尽快回到平静时，先停一停，问问自己：我是在照顾彼此，还是也需要让自己的不舒服被听见？",
-    accent: "bg-emerald-600",
-    softAccent:
-      "bg-emerald-50 text-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100",
     scenes: [
       {
         label: "在亲密里",
@@ -106,9 +103,6 @@ const typeReports: Record<string, TypeReport> = {
     trigger: "当重要的人流露失望、语气改变、追问理由或替你做决定时，你往往会很快进入警觉状态。",
     cycleOpening:
       "当你发现自己又在解释、妥协，或把感受收起来时，不妨先停一停，问问自己：我是真的同意，还是只是不想让对方失望？",
-    accent: "bg-amber-600",
-    softAccent:
-      "bg-amber-50 text-amber-950 dark:bg-amber-950/40 dark:text-amber-100",
     scenes: [
       {
         label: "在亲密里",
@@ -140,9 +134,6 @@ const typeReports: Record<string, TypeReport> = {
     trigger: "比较、评价、公开受挫，或重要的人不再给予肯定时，你很容易进入想要证明自己的状态。",
     cycleOpening:
       "当你又想立刻补偿、加倍努力，或用结果扳回认可时，先停一停，问问自己：我是在回应真正的需要，还是在用表现换取安心？",
-    accent: "bg-violet-600",
-    softAccent:
-      "bg-violet-50 text-violet-950 dark:bg-violet-950/40 dark:text-violet-100",
     scenes: [
       {
         label: "在亲密里",
@@ -174,9 +165,6 @@ const typeReports: Record<string, TypeReport> = {
     trigger: "被忽视、求助落空、脆弱被轻描淡写，容易让你立刻撤回需要并关闭连接。",
     cycleOpening:
       "当你想说“没事”、自己处理，或突然把人推远时，先停一停，问问自己：我是真的需要一点空间，还是害怕开口后得不到回应？",
-    accent: "bg-cyan-600",
-    softAccent:
-      "bg-cyan-50 text-cyan-950 dark:bg-cyan-950/40 dark:text-cyan-100",
     scenes: [
       {
         label: "在亲密里",
@@ -248,22 +236,18 @@ function ReportSection({
 }) {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: Number(index) * 0.04 }}
-      className="border-t border-zinc-200 py-9 first:border-t-0 dark:border-zinc-800"
+      transition={{ duration: 0.3, delay: Number(index) * 0.03 }}
+      className={cn(ui.section, "border-t border-divider first:border-t-0")}
     >
-      <div className="mb-6 flex items-center gap-3">
-        <span className="text-xs font-medium tracking-[0.16em] text-zinc-400">
-          {index}
-        </span>
-        <div>
-          <p className="mb-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-            {eyebrow}
-          </p>
-          <h2 className="text-lg font-semibold leading-7">{title}</h2>
+      <header className="mb-10">
+        <div className="mb-4 flex items-center gap-4">
+          <span className={ui.sectionIndex}>{index}</span>
+          <span className={ui.label}>{eyebrow}</span>
         </div>
-      </div>
+        <h2 className={ui.h2}>{title}</h2>
+      </header>
       {children}
     </motion.section>
   );
@@ -309,73 +293,59 @@ export function ResultShell({
   };
 
   return (
-    <main className="min-h-screen bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <article className="mx-auto max-w-[42rem] px-6 py-8 sm:px-8 md:py-12">
+    <main className={ui.page}>
+      <article className={cn(ui.container, "py-12 md:py-16 lg:py-20 prose-magazine")}>
         <motion.header
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="mb-8 flex flex-col text-center"
+          transition={{ duration: 0.3 }}
+          className="mb-16 flex flex-col text-center md:mb-20"
         >
-          <blockquote className="order-4 mx-auto mt-7 max-w-xl py-5">
-            <p className="text-base leading-7 text-zinc-700 dark:text-zinc-200">
-              “{report.quote}”
-            </p>
-            <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
-              {report.quoteSource}
-            </cite>
-          </blockquote>
-
-          <div className="order-1 mb-7 flex items-center justify-between text-[10px] font-medium tracking-[0.18em] text-zinc-400">
-            <span>PERSONA</span>
-            <span>NO. 20 / 20</span>
+          <div className="mb-10 flex items-center justify-between">
+            <span className={ui.label}>Persona</span>
+            <span className={ui.label}>No. 20 / 20</span>
           </div>
-          <div className="order-2">
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              你的家庭关系脚本是
-            </p>
-            <h1 className="mt-3 text-3xl font-semibold leading-tight md:text-4xl">
-              {report.label}
-            </h1>
 
-          </div>
-          <p className="order-3 mx-auto mt-6 max-w-xl text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+          <p className={cn(ui.bodySm, "mb-4")}>你的家庭关系脚本是</p>
+          <h1 className={cn(ui.h1, "mb-8")}>{report.label}</h1>
+          <p className={cn(ui.body, "mx-auto max-w-lg text-text-sub")}>
             {report.summary}
           </p>
+
+          <blockquote className={cn(ui.blockquote, "mx-auto mt-12 max-w-lg text-left")}>
+            <p className={ui.blockquoteText}>「{report.quote}」</p>
+            <cite className={ui.blockquoteCite}>{report.quoteSource}</cite>
+          </blockquote>
         </motion.header>
 
         <ReportSection index="01" eyebrow="关系画像" title="你不是被定义，而是在熟悉中保护自己">
-          <article className="space-y-5">
-            <blockquote className="border-l-2 border-zinc-300 pl-4 dark:border-zinc-700">
-              <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                “婴儿与照顾者之间的情感纽带，不只关乎温暖，更关乎生存。人会用一生去找回最初那种被稳稳接住的感觉。”
+          <article className="space-y-8">
+            <blockquote className={ui.blockquote}>
+              <p className={ui.blockquoteText}>
+                「婴儿与照顾者之间的情感纽带，不只关乎温暖，更关乎生存。人会用一生去找回最初那种被稳稳接住的感觉。」
               </p>
-              <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
-                ——约翰·鲍尔比《安全基地》
-              </cite>
+              <cite className={ui.blockquoteCite}>——约翰·鲍尔比《安全基地》</cite>
             </blockquote>
-            <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+            <p className={ui.body}>
               鲍尔比提醒我们：每一种保护自己的方式，最初都是为了活下去。下面的规则曾经帮你获得过安全，现在的问题是——它是否还在帮你获得你真正需要的东西？
             </p>
-            <div className="border-t border-zinc-200 pt-5 dark:border-zinc-800">
-              <p className="mb-2 text-xs text-zinc-500 dark:text-zinc-400">
+            <div className={cn(ui.divider, "pt-0")}>
+              <p className={cn(ui.label, "mb-3 normal-case tracking-normal")}>
                 你较早学会的关系规则
               </p>
-              <p className="text-lg font-semibold leading-8">{report.coreRule}</p>
+              <p className={cn(ui.h3, "leading-[1.9]")}>{report.coreRule}</p>
             </div>
-            <dl className="space-y-4 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+            <dl className="space-y-6">
               {[
                 ["它给你的能力", report.strength],
                 ["它让你付出的代价", report.cost],
                 ["最容易触发它的时刻", report.trigger],
               ].map(([label, text]) => (
                 <div key={label}>
-                  <dt className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                  <dt className={cn(ui.label, "mb-2 normal-case tracking-normal")}>
                     {label}
                   </dt>
-                  <dd className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                    {text}
-                  </dd>
+                  <dd className={ui.bodySm}>{text}</dd>
                 </div>
               ))}
             </dl>
@@ -383,27 +353,23 @@ export function ResultShell({
         </ReportSection>
 
         <ReportSection index="02" eyebrow="关系侧写" title="它如何出现在你的关系里">
-          <article className="space-y-5">
-            <blockquote className="border-l-2 border-zinc-300 pl-4 dark:border-zinc-700">
-              <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                “孩子不是在完美的环境中长大，而是在被理解的环境中长大。那些没有被说出口的需要，最终会变成身体语言和行为模式。”
+          <article className="space-y-8">
+            <blockquote className={ui.blockquote}>
+              <p className={ui.blockquoteText}>
+                「孩子不是在完美的环境中长大，而是在被理解的环境中长大。那些没有被说出口的需要，最终会变成身体语言和行为模式。」
               </p>
-              <cite className="mt-2 block text-xs not-italic text-zinc-500 dark:text-zinc-400">
-                ——唐纳德·温尼科特《抱持与解释》
-              </cite>
+              <cite className={ui.blockquoteCite}>——唐纳德·温尼科特《抱持与解释》</cite>
             </blockquote>
-            <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              温尼科特说的“身体语言”，就是你无意识中在每种关系里重复的脚本。看看下面这些场景——哪一个你最熟悉？
+            <p className={ui.body}>
+              温尼科特说的「身体语言」，就是你无意识中在每种关系里重复的脚本。看看下面这些场景——哪一个你最熟悉？
             </p>
-            <div className="space-y-5 border-t border-zinc-200 pt-5 dark:border-zinc-800">
+            <div className="space-y-8">
               {report.scenes.map((scene) => (
-                <div key={scene.label}>
-                  <h3 className="mb-1 text-sm font-semibold">
+                <div key={scene.label} className={cn(ui.cardStatic, "p-6")}>
+                  <h3 className={cn(ui.h3, "mb-3")}>
                     {scene.label}，{scene.title}
                   </h3>
-                  <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                    {scene.body}
-                  </p>
+                  <p className={ui.bodySm}>{scene.body}</p>
                 </div>
               ))}
             </div>
@@ -411,26 +377,21 @@ export function ResultShell({
         </ReportSection>
 
         <ReportSection index="03" eyebrow="关系坐标" title="此刻最值得留意的几个方向">
-          <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
-            <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              “认识你自己的阴影，不是为了消灭它，而是为了不再被它无声地支配。类型不是囚笼，而是理解自己的第一张地图。”
+          <blockquote className={cn(ui.blockquote, "mb-8")}>
+            <p className={ui.blockquoteText}>
+              「认识你自己的阴影，不是为了消灭它，而是为了不再被它无声地支配。类型不是囚笼，而是理解自己的第一张地图。」
             </p>
-            <cite className="mt-1 block text-sm not-italic text-zinc-500">
-              ——卡尔·荣格《心理类型》
-            </cite>
+            <cite className={ui.blockquoteCite}>——卡尔·荣格《心理类型》</cite>
           </blockquote>
-          <p className="mb-3 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+          <p className={cn(ui.bodySm, "mb-10")}>
             分数不是判断，而是理解关系反应的几个坐标。雷达图和下方卡片完整呈现这次答题的六项维度。
           </p>
-          <ResultEvidence
-            dimensions={result.dimensions}
-          />
+          <ResultEvidence dimensions={result.dimensions} />
         </ReportSection>
 
         <ReportSection index="04" eyebrow="关系循环" title="关系如何走进熟悉的循环">
-
-          <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-          这套反应曾是你适应关系的一种方式。如今，它也许会在不确定时带你回到熟悉的旧路；而看清它从哪里开始，就是为自己打开新选择的第一步。
+          <p className={cn(ui.bodySm, "mb-10")}>
+            这套反应曾是你适应关系的一种方式。如今，它也许会在不确定时带你回到熟悉的旧路；而看清它从哪里开始，就是为自己打开新选择的第一步。
           </p>
           <CCRTCycle
             wish={meta.ccrt.wish}
@@ -438,50 +399,59 @@ export function ResultShell({
             responseOfSelf={meta.ccrt.responseOfSelf}
             consequence={meta.ccrt.consequence}
           />
-          <div className="mt-7 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
-            <p className="text-sm font-semibold">循环最早开始松动的地方</p>
-            <p className="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              {report.cycleOpening}
+          <div className={cn(ui.blockquote, "mt-10")}>
+            <p className={cn(ui.label, "mb-3 normal-case tracking-normal text-text-sub")}>
+              循环最早开始松动的地方
             </p>
+            <p className={ui.bodySm}>{report.cycleOpening}</p>
           </div>
         </ReportSection>
 
         <ReportSection index="05" eyebrow="关系处方" title="先练习一个新的选择">
-          <blockquote className="mb-8 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
-            <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-              “重要的不是被给予了什么，而是如何利用被给予的东西。每一种‘不幸’的脚本背后，都潜藏着一个更自由的选择——哪怕它只有一根头发丝那么细。”
+          <blockquote className={cn(ui.blockquote, "mb-8")}>
+            <p className={ui.blockquoteText}>
+              「重要的不是被给予了什么，而是如何利用被给予的东西。每一种『不幸』的脚本背后，都潜藏着一个更自由的选择——哪怕它只有一根头发丝那么细。」
             </p>
-            <cite className="mt-1 block text-sm not-italic text-zinc-500">
-              ——阿尔弗雷德·阿德勒《自卑与超越》
-            </cite>
+            <cite className={ui.blockquoteCite}>——阿尔弗雷德·阿德勒《自卑与超越》</cite>
           </blockquote>
-          <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-            阿德勒这句话的意思是：过去发生的事情你无法改变，但你可以选择现在怎么用它。<strong>下面这个练习只要求你做一件事</strong>——在面对那个熟悉的时刻时，给自己一个旧模式之外的新选项。不是推翻自己，只是加一个岔路。
+          <p className={cn(ui.bodySm, "mb-10")}>
+            阿德勒这句话的意思是：过去发生的事情你无法改变，但你可以选择现在怎么用它。
+            <span className="text-text">下面这个练习只要求你做一件事</span>
+            ——在面对那个熟悉的时刻时，给自己一个旧模式之外的新选项。不是推翻自己，只是加一个岔路。
           </p>
-          <div className={`border border-current/15 p-5 md:p-6 ${report.softAccent}`}>
-            <div className="mb-5 flex items-center gap-2">
-              <Sparkles size={18} aria-hidden="true" />
-              <p className="text-sm font-semibold">
+          <div className={cn(ui.cardStatic, "border-accent/20 p-6 md:p-8")}>
+            <div className="mb-6 flex items-center gap-3">
+              <Sparkles size={18} className="text-accent" strokeWidth={1.5} aria-hidden="true" />
+              <p className={cn(ui.h3, "text-base")}>
                 {focusInfo ? `这一周，先留意「${focusInfo.label}」` : "这一周，先留意这个"}
               </p>
             </div>
             {focusInfo && (
-              <p className="mb-5 max-w-2xl text-sm leading-6 opacity-80">
-                {focusInfo.insight}
-              </p>
+              <p className={cn(ui.bodySm, "mb-8")}>{focusInfo.insight}</p>
             )}
-            <div className="mb-6 border-y border-current/15 py-5">
-              <p className="mb-2 text-xs font-semibold opacity-70">你一直在用的那条路</p>
-              <p className="mb-5 text-sm leading-6">{meta.fixationPoint}</p>
-              <p className="mb-2 text-xs font-semibold opacity-70">这周试着走另一条</p>
-              <p className="text-lg font-bold leading-8">{primaryAction}</p>
+            <div className="mb-8 border-y border-divider py-8">
+              <p className={cn(ui.label, "mb-3 normal-case tracking-normal")}>
+                你一直在用的那条路
+              </p>
+              <p className={cn(ui.bodySm, "mb-8")}>{meta.fixationPoint}</p>
+              <p className={cn(ui.label, "mb-3 normal-case tracking-normal")}>
+                这周试着走另一条
+              </p>
+              <p className={cn(ui.h3, "leading-[1.9] text-text")}>{primaryAction}</p>
             </div>
-            <p className="mb-3 text-xs font-semibold opacity-70">如果还有力气折腾</p>
-            <div className="space-y-3">
+            <p className={cn(ui.label, "mb-4 normal-case tracking-normal")}>
+              如果还有力气折腾
+            </p>
+            <div className="space-y-4">
               {practices.map((practice) => (
-                <div key={practice} className="flex items-start gap-2 text-sm leading-6">
-                  <ArrowRight size={15} className="mt-1 shrink-0" aria-hidden="true" />
-                  <span>{practice}</span>
+                <div key={practice} className="flex items-start gap-3">
+                  <ArrowRight
+                    size={18}
+                    className="mt-1 shrink-0 text-accent"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <span className={ui.bodySm}>{practice}</span>
                 </div>
               ))}
             </div>
@@ -489,23 +459,17 @@ export function ResultShell({
         </ReportSection>
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.32 }}
-          className="mt-2 flex flex-col gap-3 border-t border-zinc-200 pt-8 dark:border-zinc-800 sm:flex-row"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
+          className={cn(ui.divider, "flex flex-col gap-4 sm:flex-row")}
         >
-          <button
-            onClick={handleShare}
-            className="flex min-h-11 flex-1 items-center justify-center gap-2 border border-zinc-950 bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-opacity hover:opacity-85 dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-950"
-          >
-            <Share2 size={18} aria-hidden="true" />
+          <button onClick={handleShare} className={cn(ui.btnPrimary, "flex-1")}>
+            <Share2 size={18} strokeWidth={1.5} aria-hidden="true" />
             分享结果
           </button>
-          <button
-            onClick={onRetake}
-            className="flex min-h-11 flex-1 items-center justify-center gap-2 border border-zinc-300 px-5 py-3 text-sm font-medium transition-colors hover:border-zinc-950 dark:border-zinc-700 dark:hover:border-zinc-100"
-          >
-            <RefreshCw size={18} aria-hidden="true" />
+          <button onClick={onRetake} className={cn(ui.btnSecondary, "flex-1")}>
+            <RefreshCw size={18} strokeWidth={1.5} aria-hidden="true" />
             重新测试
           </button>
         </motion.div>

@@ -1,5 +1,5 @@
-import { useMemo, useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useCallback, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, RotateCcw } from "lucide-react";
 import { ResultShell } from "@/components/result/ResultShell";
 import { HomeCover } from "@/components/home/HomeCover";
@@ -8,8 +8,12 @@ import { QuestionCard } from "@/components/test/QuestionCard";
 import type { Answer, Option, ScoreResult } from "@/engines/core/types";
 import { familyOriginTest } from "@/tests/family-origin/config";
 import { getQuestions } from "@/tests/family-origin/questions";
+import { ui } from "@/lib/ui";
+import { cn } from "@/lib/utils";
 
 type Screen = "home" | "test" | "result";
+
+const QUESTION_TRANSITION_MS = 320;
 
 export function SingleFileApp() {
   const questions = useMemo(() => getQuestions(), []);
@@ -18,8 +22,32 @@ export function SingleFileApp() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [result, setResult] = useState<ScoreResult>();
   const [resultError, setResultError] = useState<string>();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const isLockedRef = useRef(false);
+  const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearTransitionTimer = useCallback(() => {
+    if (transitionTimerRef.current) {
+      clearTimeout(transitionTimerRef.current);
+      transitionTimerRef.current = null;
+    }
+  }, []);
+
+  const lockTransition = useCallback(() => {
+    clearTransitionTimer();
+    isLockedRef.current = true;
+    setIsTransitioning(true);
+    transitionTimerRef.current = setTimeout(() => {
+      isLockedRef.current = false;
+      setIsTransitioning(false);
+      transitionTimerRef.current = null;
+    }, QUESTION_TRANSITION_MS);
+  }, [clearTransitionTimer]);
 
   const startTest = () => {
+    clearTransitionTimer();
+    isLockedRef.current = false;
+    setIsTransitioning(false);
     setAnswers([]);
     setCurrentQuestionIndex(0);
     setResult(undefined);
@@ -29,6 +57,8 @@ export function SingleFileApp() {
   };
 
   const handleAnswer = (option: Option) => {
+    if (isLockedRef.current || isTransitioning) return;
+
     const question = questions[currentQuestionIndex];
     if (!question) return;
 
@@ -48,6 +78,7 @@ export function SingleFileApp() {
     }
 
     setAnswers(nextAnswers);
+    lockTransition();
 
     if (currentQuestionIndex === questions.length - 1) {
       return;
@@ -95,11 +126,11 @@ export function SingleFileApp() {
     }
 
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white px-5 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
+      <main className={cn(ui.page, "flex min-h-screen items-center justify-center px-6")}>
         <div className="max-w-sm text-center">
-          <p className="mb-2 text-sm font-medium text-zinc-500">结果计算</p>
-          <h1 className="mb-4 text-2xl font-bold">暂时没有生成结果</h1>
-          <p className="mb-6 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+          <p className={cn(ui.caption, "mb-2")}>结果计算</p>
+          <h1 className={cn(ui.h2, "mb-4")}>暂时没有生成结果</h1>
+          <p className={cn(ui.bodySm, "mb-8")}>
             {resultError || "答案尚未完整，请返回后继续完成测试。"}
           </p>
           <button
@@ -107,7 +138,7 @@ export function SingleFileApp() {
               setScreen("test");
               setCurrentQuestionIndex(questions.length - 1);
             }}
-            className="min-h-12 bg-zinc-950 px-6 py-3 font-medium text-white dark:bg-zinc-100 dark:text-zinc-950"
+            className={ui.btnPrimary}
           >
             返回最后一题
           </button>
@@ -122,13 +153,11 @@ export function SingleFileApp() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
-      <header className="border-b border-zinc-200 px-4 py-4 dark:border-zinc-800">
-        <div className="mx-auto flex max-w-2xl items-center justify-between gap-4">
-          <h1 className="text-base font-semibold md:text-lg">
-            {familyOriginTest.name}
-          </h1>
-          <span className="shrink-0 text-sm text-zinc-500">
+    <main className={cn(ui.page, "flex min-h-screen flex-col")}>
+      <header className={cn(ui.container, "border-b border-divider py-6")}>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className={ui.h3}>{familyOriginTest.name}</h1>
+          <span className={cn(ui.caption, "shrink-0")}>
             {familyOriginTest.estimatedTime}
           </span>
         </div>
@@ -140,60 +169,83 @@ export function SingleFileApp() {
       />
 
       <div className="flex flex-1 flex-col justify-center">
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           {currentQuestion && (
-            <QuestionCard
+            <motion.div
               key={currentQuestion.id}
-              question={currentQuestion}
-              questionNumber={currentQuestionIndex + 1}
-              totalQuestions={questions.length}
-              onAnswer={handleAnswer}
-              selectedOption={currentAnswer?.selectedOption.value}
-            />
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <QuestionCard
+                question={currentQuestion}
+                questionNumber={currentQuestionIndex + 1}
+                totalQuestions={questions.length}
+                onAnswer={handleAnswer}
+                selectedOption={currentAnswer?.selectedOption.value}
+                disabled={isTransitioning}
+              />
+            </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      <div className="mx-auto flex w-full max-w-2xl items-center justify-between gap-2 px-4 py-4">
+      <div className={cn(ui.container, "flex items-center justify-between gap-2 py-6")}>
         <button
-          onClick={() => setCurrentQuestionIndex((index) => Math.max(0, index - 1))}
-          disabled={currentQuestionIndex === 0}
-          className="flex min-h-11 items-center gap-2 px-3 text-sm text-zinc-600 transition-colors hover:text-zinc-950 disabled:cursor-not-allowed disabled:opacity-30 dark:text-zinc-400 dark:hover:text-zinc-100"
+          onClick={() => {
+            if (isLockedRef.current || isTransitioning) return;
+            clearTransitionTimer();
+            isLockedRef.current = false;
+            setIsTransitioning(false);
+            setCurrentQuestionIndex((index) => Math.max(0, index - 1));
+          }}
+          disabled={currentQuestionIndex === 0 || isTransitioning}
+          className={ui.btnGhost}
         >
-          <ArrowLeft size={16} aria-hidden="true" />
+          <ArrowLeft size={18} strokeWidth={1.5} aria-hidden="true" />
           上一题
         </button>
 
         {currentAnswer && currentQuestionIndex < questions.length - 1 && (
           <button
-            onClick={() => setCurrentQuestionIndex((index) => index + 1)}
-            className="flex min-h-11 items-center gap-2 bg-zinc-950 px-5 py-2 text-sm font-medium text-white dark:bg-zinc-100 dark:text-zinc-950"
+            onClick={() => {
+              if (isTransitioning) return;
+              setCurrentQuestionIndex((index) => index + 1);
+            }}
+            disabled={isTransitioning}
+            className={ui.btnPrimary}
           >
             下一题
-            <ArrowRight size={16} aria-hidden="true" />
+            <ArrowRight size={18} strokeWidth={1.5} aria-hidden="true" />
           </button>
         )}
 
         {currentAnswer && currentQuestionIndex === questions.length - 1 && (
           <button
             onClick={handleSubmit}
-            className="flex min-h-11 items-center gap-2 bg-zinc-950 px-5 py-2 text-sm font-medium text-white dark:bg-zinc-100 dark:text-zinc-950"
+            disabled={isTransitioning}
+            className={ui.btnPrimary}
           >
             查看结果
-            <ArrowRight size={16} aria-hidden="true" />
+            <ArrowRight size={18} strokeWidth={1.5} aria-hidden="true" />
           </button>
         )}
 
         <button
           onClick={() => {
+            clearTransitionTimer();
+            isLockedRef.current = false;
+            setIsTransitioning(false);
             setAnswers([]);
             setCurrentQuestionIndex(0);
             setResult(undefined);
             setResultError(undefined);
           }}
-          className="flex min-h-11 items-center gap-2 px-3 text-sm text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-100"
+          disabled={isTransitioning}
+          className={ui.btnGhost}
         >
-          <RotateCcw size={16} aria-hidden="true" />
+          <RotateCcw size={18} strokeWidth={1.5} aria-hidden="true" />
           重新开始
         </button>
       </div>
