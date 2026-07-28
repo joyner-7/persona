@@ -52,6 +52,7 @@ interface TypeReport {
   strength: string;
   cost: string;
   trigger: string;
+  cycleOpening: string;
   accent: string;
   softAccent: string;
   scenes: { label: string; title: string; body: string }[];
@@ -69,6 +70,8 @@ const typeReports: Record<string, TypeReport> = {
     strength: "你较能信任、求助、回应他人，也能在关系之外保有自己的生活。",
     cost: "你可能低估他人的警觉与退缩，或太快相信沟通一定能解决问题。",
     trigger: "长期冷处理、反复越界或只有一方努力修复，会让你明显失去安全感。",
+    cycleOpening:
+      "当你急着解释、协调，想让关系尽快回到平静时，先停一停，问问自己：我是在照顾彼此，还是也需要让自己的不舒服被听见？",
     accent: "bg-emerald-600",
     softAccent:
       "bg-emerald-50 text-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100",
@@ -98,9 +101,11 @@ const typeReports: Record<string, TypeReport> = {
     quoteSource: "易卜生《玩偶之家》",
     quoteNote: "娜拉的离开不是鼓励用决裂证明自由，而是提醒人先成为关系中的主体。你要练习的不是立刻反抗，而是让自己的意愿先拥有一个可以被听见的位置。",
     coreRule: "先看清规则、避免让重要的人失望，关系才比较安全。",
-    strength: "你对气氛、责任与风险十分敏锐，常能提前发现问题并把事情稳稳完成。",
-    cost: "你可能把选择变成汇报，把分歧体验成伤害，久而久之很难确认自己真正想要什么。",
-    trigger: "重要他人的失望、语气变化、追问理由或替你做决定，容易迅速拉高警觉。",
+    strength: "你对气氛、责任与风险十分敏锐，常常能提前发现问题并妥善解决。",
+    cost: "你可能常常需要解释自己的选择，也容易把分歧听成否定，久了就不太确定自己真正想要什么。",
+    trigger: "当重要的人流露失望、语气改变、追问理由或替你做决定时，你往往会很快进入警觉状态。",
+    cycleOpening:
+      "当你发现自己又在解释、妥协，或把感受收起来时，不妨先停一停，问问自己：我是真的同意，还是只是不想让对方失望？",
     accent: "bg-amber-600",
     softAccent:
       "bg-amber-50 text-amber-950 dark:bg-amber-950/40 dark:text-amber-100",
@@ -108,12 +113,12 @@ const typeReports: Record<string, TypeReport> = {
       {
         label: "在亲密里",
         title: "你会先判断对方能否接受真实的你",
-        body: "表达偏好前，你可能先观察语气和脸色；一旦预感对方不高兴，就容易解释、妥协或暂时收回选择。",
+        body: "表达偏好前，你可能会先观察语气和脸色；一旦预感对方不高兴，就容易解释、妥协或暂时收回选择。",
       },
       {
         label: "在冲突里",
         title: "愤怒与内疚常常同时出现",
-        body: "你一方面想守住自主，另一方面又担心自己太自私，于是可能在服从、辩解和突然反抗之间摇摆。",
+        body: "你一方面想守住自我，另一方面又担心自己太自私，于是可能在服从、辩解和突然反抗之间摇摆。",
       },
       {
         label: "面对自己",
@@ -128,11 +133,13 @@ const typeReports: Record<string, TypeReport> = {
       "你很会察觉期待并做到足够好；这让你容易获得认可，也可能让休息和真实偏好变得有负担。",
     quote: "在隆冬，我终于知道，我身上有一个不可战胜的夏天。",
     quoteSource: "阿尔贝·加缪《重返蒂巴萨》",
-    quoteNote: "加缪写的是一种不依赖外部天气的内在生命。对你来说，真正的松动不是停止努力，而是不再用每一次表现证明自己足够好、足够值得被爱。",
+    quoteNote: "加缪写的是一种不被外界境遇左右的内在生命。对你来说，真正的松动并不是停止努力，而是不再把每一次表现，都当作证明自己足够好、值得被爱的机会。",
     coreRule: "足够好、足够有用、足够懂事，才更容易被看见和留下。",
     strength: "你善于理解期待、兑现承诺和持续进步，往往是别人眼中可靠又体面的人。",
-    cost: "当价值感长期依赖表现，休息会带来负罪感，认可也只能短暂止渴。",
-    trigger: "比较、评价、公开失败或重要他人撤回肯定，容易让你迅速进入证明模式。",
+    cost: "当价值感总要靠表现来支撑，休息会变得像亏欠，认可也只能短暂地让人安心。",
+    trigger: "比较、评价、公开受挫，或重要的人不再给予肯定时，你很容易进入想要证明自己的状态。",
+    cycleOpening:
+      "当你又想立刻补偿、加倍努力，或用结果扳回认可时，先停一停，问问自己：我是在回应真正的需要，还是在用表现换取安心？",
     accent: "bg-violet-600",
     softAccent:
       "bg-violet-50 text-violet-950 dark:bg-violet-950/40 dark:text-violet-100",
@@ -150,7 +157,7 @@ const typeReports: Record<string, TypeReport> = {
       {
         label: "面对自己",
         title: "完成一个目标后，标准很快又被抬高",
-        body: "你可能很难真正抵达“已经够了”，因为成绩证明的是这一次表现，而不是稳定的自我价值。",
+        body: "你可能很难真正相信自己已经够好了，因为成绩能证明的只是这一次表现，而不是你本身的价值。",
       },
     ],
   },
@@ -160,11 +167,13 @@ const typeReports: Record<string, TypeReport> = {
       "你很能独自消化情绪和解决问题；这份独立保护过你，也可能让表达需要和接受帮助变得陌生。",
     quote: "唯有联结。",
     quoteSource: "E. M. 福斯特《霍华德庄园》",
-    quoteNote: "这句“Only connect”不是要求毫无边界地靠近，而是邀请理性、感受与他人重新发生联系。对你来说，重新连接可以从一次很小、很具体的请求开始。",
+    quoteNote: "‘唯有联结’ 不是要求你毫无边界地靠近谁，而是提醒你，让理性、感受和人与人之间的联系重新流动起来。对你来说，可以先从提出一个小而具体的请求开始。",
     coreRule: "把需要收回去、把事情自己处理好，比期待别人回应更稳妥。",
     strength: "你有很强的独立性、耐受力和内在空间，在缺少支持时也能维持生活运转。",
     cost: "别人可能误以为你不需要关心，而你在真正耗尽前，也很难让人知道发生了什么。",
     trigger: "被忽视、求助落空、脆弱被轻描淡写，容易让你立刻撤回需要并关闭连接。",
+    cycleOpening:
+      "当你想说“没事”、自己处理，或突然把人推远时，先停一停，问问自己：我是真的需要一点空间，还是害怕开口后得不到回应？",
     accent: "bg-cyan-600",
     softAccent:
       "bg-cyan-50 text-cyan-950 dark:bg-cyan-950/40 dark:text-cyan-100",
@@ -389,10 +398,9 @@ export function ResultShell({
             <div className="space-y-5 border-t border-zinc-200 pt-5 dark:border-zinc-800">
               {report.scenes.map((scene) => (
                 <div key={scene.label}>
-                  <p className="mb-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                    {scene.label}
-                  </p>
-                  <h3 className="mb-1 text-sm font-semibold">{scene.title}</h3>
+                  <h3 className="mb-1 text-sm font-semibold">
+                    {scene.label}，{scene.title}
+                  </h3>
                   <p className="text-sm leading-7 text-zinc-600 dark:text-zinc-300">
                     {scene.body}
                   </p>
@@ -419,9 +427,10 @@ export function ResultShell({
           />
         </ReportSection>
 
-        <ReportSection index="04" eyebrow="待定" title="关系如何走进熟悉的循环">
+        <ReportSection index="04" eyebrow="关系循环" title="关系如何走进熟悉的循环">
+
           <p className="mb-6 max-w-2xl text-sm leading-6 text-zinc-500 dark:text-zinc-400">
-            循环不是命运。它只是大脑在不确定时优先调用的旧路径；看清从哪一步开始，才有机会在那里加入新的选择。
+          这套反应曾是你适应关系的一种方式。如今，它也许会在不确定时带你回到熟悉的旧路；而看清它从哪里开始，就是为自己打开新选择的第一步。
           </p>
           <CCRTCycle
             wish={meta.ccrt.wish}
@@ -429,6 +438,12 @@ export function ResultShell({
             responseOfSelf={meta.ccrt.responseOfSelf}
             consequence={meta.ccrt.consequence}
           />
+          <div className="mt-7 max-w-2xl border-l-2 border-zinc-300 pl-5 dark:border-zinc-700">
+            <p className="text-sm font-semibold">循环最早开始松动的地方</p>
+            <p className="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+              {report.cycleOpening}
+            </p>
+          </div>
         </ReportSection>
 
         <ReportSection index="05" eyebrow="关系处方" title="先练习一个新的选择">

@@ -17,10 +17,10 @@ export function CCRTCycle({
   consequence,
 }: CCRTCycleProps) {
   const steps = [
-    { label: "我想要", text: wish },
-    { label: "我预期对方", text: responseOfOther },
-    { label: "于是我", text: responseOfSelf },
-    { label: "关系最后", text: consequence },
+    { label: "我真正想要的", text: wish },
+    { label: "关系里出现了什么", text: responseOfOther },
+    { label: "我如何保护自己", text: responseOfSelf },
+    { label: "最后留下了什么", text: consequence },
   ];
 
   return (
@@ -31,10 +31,10 @@ export function CCRTCycle({
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.08 }}
-            className="border-t border-zinc-200 py-5 dark:border-zinc-800 md:min-h-44 md:border-l md:border-t-0 md:px-4 md:py-4 first:md:border-l-0 first:md:pl-0 last:md:pr-0"
+            className="border-t border-zinc-200 py-5 dark:border-zinc-800 md:min-h-48 md:border-l md:border-t-0 md:px-4 md:py-4 first:md:border-l-0 first:md:pl-0 last:md:pr-0"
           >
             <span className="mb-3 block text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-              {index + 1} · {step.label}
+              {index + 1} / {step.label}
             </span>
             <p className="text-sm leading-6">{step.text}</p>
           </motion.div>
