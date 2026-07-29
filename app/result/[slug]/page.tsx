@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTest, getAllTests } from "@/tests/_registry";
+import { AuthGuard } from "@/components/auth/AuthGuard";
 import ResultPageClient from "./ResultPageClient";
 
 export function generateStaticParams() {
@@ -11,5 +12,9 @@ export default async function ResultPage({ params }: { params: Promise<{ slug: s
   const test = getTest(slug);
   if (!test) return notFound();
 
-  return <ResultPageClient slug={slug} />;
+  return (
+    <AuthGuard>
+      <ResultPageClient slug={slug} />
+    </AuthGuard>
+  );
 }

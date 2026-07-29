@@ -1,5 +1,5 @@
-import { HomeCover } from "@/components/home/HomeCover";
+import { AuthCodeForm } from "@/components/auth/AuthCodeForm";
 
 export default function HomePage() {
-  return <HomeCover startHref="/test/family-origin" />;
+  return <AuthCodeForm />;
 }

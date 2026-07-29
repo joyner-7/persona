@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "licenses:build": "node scripts/build-license-codes.mjs",
     "build:single": "vite build --config vite.single.config.ts",
     "preview:single": "vite preview --config vite.single.config.ts",
     "start": "next start",

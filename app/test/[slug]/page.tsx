@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTest, getAllTests } from "@/tests/_registry";
+import { AuthGuard } from "@/components/auth/AuthGuard";
 import { TestController } from "@/components/test/TestController";
 import { ui } from "@/lib/ui";
 import { cn } from "@/lib/utils";
@@ -18,11 +19,13 @@ export default async function TestPage({
   if (!test) return notFound();
 
   return (
-    <div className={cn(ui.page, "flex flex-col")}>
-      <header className={cn(ui.container, "border-b border-divider py-6")}>
-        <h1 className={cn(ui.h3, "text-center sm:text-left")}>{test.name}</h1>
-      </header>
-      <TestController slug={slug} />
-    </div>
+    <AuthGuard>
+      <div className={cn(ui.page, "flex flex-col")}>
+        <header className={cn(ui.container, "border-b border-divider py-6")}>
+          <h1 className={cn(ui.h3, "text-center sm:text-left")}>{test.name}</h1>
+        </header>
+        <TestController slug={slug} />
+      </div>
+    </AuthGuard>
   );
 }
