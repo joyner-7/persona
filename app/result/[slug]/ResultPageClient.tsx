@@ -7,8 +7,6 @@ import { Answer, Question } from "@/engines/core/types";
 import { useTestStore } from "@/store/testStore";
 import { getTest } from "@/tests/_registry";
 import {
-  buildSharedResultUrl,
-  createSharedResultSnapshot,
   parseSharedResultSnapshot,
   type SharedResultSnapshot,
 } from "@/lib/result-share";
@@ -139,20 +137,10 @@ export default function ResultPage({ slug }: ResultPageProps) {
   const activeFocus = hasCompleteSharedSnapshot
     ? snapshotState.snapshot?.focus
     : session?.focus;
-  const activeSnapshot = hasCompleteSharedSnapshot
-    ? snapshotState.snapshot
-    : localSessionIsComplete
-    ? createSharedResultSnapshot(session.answers, session.focus)
-    : null;
   const shouldShowInvalidSnapshot =
     (snapshotState.status === "invalid" ||
       (Boolean(snapshotState.snapshot) && !hasCompleteSharedSnapshot)) &&
     !localSessionIsComplete;
-  const shareUrl =
-    mounted && activeSnapshot
-      ? buildSharedResultUrl(window.location.origin, slug, activeSnapshot)
-      : null;
-
   if (!test) return notFound();
 
   if (!mounted || loadingQuestions || snapshotState.status === "pending") {
@@ -196,14 +184,12 @@ export default function ResultPage({ slug }: ResultPageProps) {
     >
       <ResultShell
         result={result}
-        testSlug={slug}
         testName={test.name}
         focus={activeFocus}
         onRetake={() => {
           reset(slug);
           router.push(`/test/${slug}`);
         }}
-        shareUrl={shareUrl}
       />
     </motion.div>
   );

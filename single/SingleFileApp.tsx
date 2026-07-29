@@ -117,9 +117,7 @@ export function SingleFileApp() {
       return (
         <ResultShell
           result={result}
-          testSlug={familyOriginTest.slug}
           testName={familyOriginTest.name}
-          shareUrl={null}
           onRetake={startTest}
         />
       );

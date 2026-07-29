@@ -1,9 +1,11 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, RefreshCw, Share2, Sparkles } from "lucide-react";
+import { ArrowRight, Camera, RefreshCw, Sparkles } from "lucide-react";
 import { ScoreResult } from "@/engines/core/types";
 import type { ReflectionFocus } from "@/store/testStore";
+import { captureResultScreenshot } from "@/lib/capture-result-screenshot";
 import { ui } from "@/lib/ui";
 import { cn } from "@/lib/utils";
 import { CCRTCycle } from "./CCRTCycle";
@@ -11,11 +13,9 @@ import { ResultEvidence } from "./ResultEvidence";
 
 interface ResultShellProps {
   result: ScoreResult;
-  testSlug: string;
   testName: string;
   focus?: ReflectionFocus;
   onRetake: () => void;
-  shareUrl?: string | null;
 }
 
 interface NarrativeMeta {
@@ -255,12 +255,12 @@ function ReportSection({
 
 export function ResultShell({
   result,
-  testSlug,
   testName,
   focus,
   onRetake,
-  shareUrl,
 }: ResultShellProps) {
+  const captureRef = useRef<HTMLDivElement>(null);
+  const [isCapturing, setIsCapturing] = useState(false);
   const meta = result.metadata as unknown as NarrativeMeta;
   const report = typeReports[meta.primaryType] || typeReports.A;
   const focusInfo = focus ? focusCopy[focus] : undefined;
@@ -268,33 +268,27 @@ export function ResultShell({
   const primaryAction = focusInfo?.action || meta.developmentalTask;
 
   const handleShare = async () => {
-    const url =
-      shareUrl === undefined
-        ? `${window.location.origin}/result/${testSlug}`
-        : shareUrl;
-    const text = `我的家庭关系脚本偏向：${report.label}。${report.summary}`;
+    const target = captureRef.current;
+    if (!target || isCapturing) return;
 
-    if (navigator.share) {
-      await navigator.share({
-        title: `${testName} - 关系脚本地图`,
-        text,
-        ...(url ? { url } : {}),
-      });
-      return;
-    }
-
-    const shareText = url ? `${text} ${url}` : text;
+    setIsCapturing(true);
     try {
-      await navigator.clipboard.writeText(shareText);
-      alert(url ? "结果链接已复制到剪贴板" : "结果摘要已复制到剪贴板");
+      const date = new Date().toISOString().slice(0, 10);
+      await captureResultScreenshot(
+        target,
+        `${testName}-${report.label}-${date}.png`
+      );
     } catch {
-      alert(shareText);
+      alert("截图保存失败，请稍后重试。");
+    } finally {
+      setIsCapturing(false);
     }
   };
 
   return (
     <main className={ui.page}>
       <article className={cn(ui.container, "py-12 md:py-16 lg:py-20 prose-magazine")}>
+        <div ref={captureRef}>
         <motion.header
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -457,6 +451,7 @@ export function ResultShell({
             </div>
           </div>
         </ReportSection>
+        </div>
 
         <motion.div
           initial={{ opacity: 0, y: 8 }}
@@ -464,9 +459,13 @@ export function ResultShell({
           transition={{ delay: 0.2, duration: 0.3 }}
           className={cn(ui.divider, "flex flex-col gap-4 sm:flex-row")}
         >
-          <button onClick={handleShare} className={cn(ui.btnPrimary, "flex-1")}>
-            <Share2 size={18} strokeWidth={1.5} aria-hidden="true" />
-            分享结果
+          <button
+            onClick={handleShare}
+            disabled={isCapturing}
+            className={cn(ui.btnPrimary, "flex-1 disabled:cursor-not-allowed disabled:opacity-60")}
+          >
+            <Camera size={18} strokeWidth={1.5} aria-hidden="true" />
+            {isCapturing ? "正在生成截图..." : "分享结果"}
           </button>
           <button onClick={onRetake} className={cn(ui.btnSecondary, "flex-1")}>
             <RefreshCw size={18} strokeWidth={1.5} aria-hidden="true" />

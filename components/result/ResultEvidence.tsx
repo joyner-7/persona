@@ -28,7 +28,10 @@ export function ResultEvidence({ dimensions }: ResultEvidenceProps) {
 
   return (
     <div>
-      <div className="mx-auto mb-10 h-72 w-full max-w-md text-text-muted">
+      <div
+        data-result-chart
+        className="mx-auto mb-10 h-72 w-full max-w-md text-text-muted"
+      >
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart data={radarData} cx="50%" cy="52%" outerRadius="67%">
             <PolarGrid stroke={GRID_STROKE} />
